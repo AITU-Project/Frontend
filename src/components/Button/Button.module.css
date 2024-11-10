@@ -1,28 +1,13 @@
 .button {
-  background-color: #FF9D00;
+  background-color: #ff9d00;
   color: white;
-}
-
-.button {
+  margin-top: 50px;
   border: none;
   border-radius: 20px;
-}
-
-.button {
   width: 300px;
   height: 48px;
-}
-
-.button {
   font-size: large;
   font-weight: bolder;
   text-align: center;
-}
-
-.button{
-  margin-top: 50px;
-}
-
-.button {
   cursor: pointer;
 }
