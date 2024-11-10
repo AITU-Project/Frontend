@@ -7,7 +7,7 @@ interface ButtonProps {
   onClick: MouseEventHandler;
 }
 
-export function Button(props: ButtonProps) {
+export function Button(props: Readonly<ButtonProps>) {
   return (
     <button className={style.button} onClick={props.onClick}>
       {props.title}
