@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "rvest.vs-code-prettier-eslint",
+    "ms-azuretools.vscode-docker",
+    "dsznajder.es7-react-js-snippets"
+  ]
+}
