@@ -16,21 +16,23 @@
 
   border-radius: 8px;
 
-  padding-left: 10vw;
-  padding-right: 10vw;
-  padding-top: 9vh;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  padding-top: 5vh;
   padding-bottom: 5vh;
 
   box-sizing: border-box;
 
   position: relative;
 
-  width: 50vw;
-  height: 446px;
+  width: 40vw;
+  height: 46vh;
 
   display: flex;
   flex-direction: column;
   text-align: left;
+
+  justify-content: space-between;
 
   gap: 50px;
 
@@ -82,8 +84,9 @@
 @media screen and (max-width: 480px) {
   .dialogueContent {
     padding-top: 3vh;
+    padding-bottom: 3vh;
     width: 80vw;
-    height: 60vh;
+    height: 55vh;
   }
 
   .dialogueTitle {
