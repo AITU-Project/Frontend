@@ -4,7 +4,7 @@ import style from './Button.module.css';
 
 interface ButtonProps {
   title: string;
-  onClick: MouseEventHandler;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 export function Button(props: Readonly<ButtonProps>) {
