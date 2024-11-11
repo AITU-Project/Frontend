@@ -1,0 +1,25 @@
+.sidePanelButton {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+  gap: 1vw;
+
+  background-color: #1b263b;
+  border: none;
+  border-radius: 0.25em;
+  cursor: pointer;
+
+  height: 4vh;
+}
+
+.sidePanelButtonTitle {
+  color: white;
+  font-size: large;
+}
+
+.sidePanelButtonIcon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
