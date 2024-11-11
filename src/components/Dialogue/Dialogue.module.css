@@ -16,15 +16,16 @@
 
   border-radius: 8px;
 
-  padding-left: 132px;
-  padding-right: 132px;
-  padding-top: 76px;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  padding-top: 9vh;
+  padding-bottom: 5vh;
 
   box-sizing: border-box;
 
   position: relative;
 
-  width: 714px;
+  width: 50vw;
   height: 446px;
 
   display: flex;
@@ -35,6 +36,8 @@
 
   opacity: 0;
   animation: fadeIn 0.5s ease forwards;
+
+  overflow-y: auto;
 }
 
 .dialogueTitle {
@@ -73,5 +76,25 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .dialogueContent {
+    padding-top: 3vh;
+    width: 80vw;
+    height: 60vh;
+  }
+
+  .dialogueTitle {
+    font-size: medium;
+  }
+
+  .dialogueDescription {
+    font-size: small;
+  }
+
+  .dialogueButtonsContainer {
+    font-size: small;
   }
 }
