@@ -20,8 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:prod": "docker run -p 80:80 react-typescript-app",
-    "build:prod": "docker build -t react-typescript-app .",
+    "start:docker": "docker run -p 80:80 react-typescript-app",
+    "build:docker": "docker build -t react-typescript-app .",
     "lint": "npx eslint ./src"
   },
   "browserslist": {
