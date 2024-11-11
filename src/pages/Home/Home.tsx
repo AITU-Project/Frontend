@@ -1,15 +1,55 @@
+import { useState } from 'react';
+
 import { Button } from '../../components/Button';
+import { Dialogue } from '../../components/Dialogue';
+import { DialogueButton } from '../../components/DialogueButton';
 import styles from './Home.module.css';
 
 function Home() {
+  const [isDialogueOpen, setDialogueOpen] = useState(false);
+
+  const openDialogue = () => setDialogueOpen(true);
+  const closeDialogue = () => setDialogueOpen(false);
+
+  const accountDeletionHandler = () => {
+    closeDialogue();
+  };
+
+  const cancelationHandler = () => {
+    closeDialogue();
+  };
+
   return (
     <div className={styles.app}>
       <Button
         title="Войти"
         onClick={() => {
-          console.log('I was clicked');
+          openDialogue();
         }}
       ></Button>
+
+      <Dialogue
+        content={{
+          title: 'Внимание! Удаление аккаунта',
+          description: [
+            'Вы уверены, что хотите удалить свой аккаунт?',
+            'Это действие необратимо, и все ваши данные будут удалены навсегда. Отменить удаление будет невозможно. Нажмите "Удалить", если вы действительно хотите удалить аккаунт.',
+          ],
+        }}
+        isOpen={isDialogueOpen}
+        toClose={closeDialogue}
+      >
+        <DialogueButton
+          title="Отменить"
+          onClick={cancelationHandler}
+          type={'normal'}
+        ></DialogueButton>
+        <DialogueButton
+          title="Удалить аккаунт"
+          type={'red'}
+          onClick={accountDeletionHandler}
+        ></DialogueButton>
+      </Dialogue>
     </div>
   );
 }
