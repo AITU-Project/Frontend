@@ -6,10 +6,10 @@ import { DialogueButton } from '../../components/DialogueButton';
 import styles from './Home.module.css';
 
 function Home() {
-  const [isDialogueOpen, setDialogueOpen] = useState(false);
+  const [isDialogueOpen, setIsDialogueOpen] = useState(false);
 
-  const openDialogue = () => setDialogueOpen(true);
-  const closeDialogue = () => setDialogueOpen(false);
+  const openDialogue = () => setIsDialogueOpen(true);
+  const closeDialogue = () => setIsDialogueOpen(false);
 
   const accountDeletionHandler = () => {
     closeDialogue();
