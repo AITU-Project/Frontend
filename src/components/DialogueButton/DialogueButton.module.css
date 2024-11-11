@@ -1,0 +1,28 @@
+.dialogueButton {
+  border: none;
+  border-radius: 6px;
+  width: 190px;
+
+  box-sizing: border-box;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  padding-left: 10px;
+  padding-right: 10px;
+
+  font-weight: 900;
+  font-size: 1em;
+
+  cursor: pointer;
+}
+
+.redButton {
+  background-color: #ff5252;
+  color: black;
+}
+
+.normalButton {
+  background-color: #d9d9d9;
+  color: black;
+}
