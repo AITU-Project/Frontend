@@ -9,7 +9,13 @@ import signIn from '../../assets/images/side-panel/sign-in.svg';
 import { SidePanelButton } from '../SidePanelButton';
 import style from './SidePanel.module.css';
 
-export function SidePanel() {
+interface SidePanelProps {
+  hidden?: boolean;
+}
+
+export function SidePanel(props: SidePanelProps) {
+  if (props.hidden) return null;
+
   const sidePanelContentMap: Map<string, string> = new Map([
     ['Реестр повесток и вызовов', identification],
     ['Создание заключения', addDocument],
