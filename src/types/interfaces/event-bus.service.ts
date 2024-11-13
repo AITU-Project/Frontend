@@ -1,6 +1,7 @@
 import { Observable } from 'rxjs';
 
-import { AppEvent, AppEventType } from './app-events';
+import { AppEvent } from '../dtos/events.dto';
+import { AppEventType } from '../enums/events.enum';
 
 export interface IEventBusService {
   pushEvent<T>(event: AppEvent<T>): void;
