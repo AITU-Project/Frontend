@@ -7,7 +7,7 @@ interface InputProps {
   name?: string;
   value?: string;
   label?: string;
-  notes?: string;
+  notes?: string[];
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
@@ -30,7 +30,13 @@ export function Input(props: InputProps) {
         onChange={props.onChange}
       />
       {props.notes !== undefined && (
-        <span className={style.notes}>{props.notes}</span>
+        <>
+          {props.notes.map((note) => (
+            <span key={note} className={style.notes}>
+              {note}
+            </span>
+          ))}
+        </>
       )}
     </div>
   );

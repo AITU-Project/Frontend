@@ -9,7 +9,7 @@ function Studio() {
       <Input
         placeholder="Введите почту"
         label="Email"
-        notes="Напишите корректно"
+        notes={['* Поле не должно быть пустым']}
         onBlur={() => {
           console.log('Hello World!');
         }}
