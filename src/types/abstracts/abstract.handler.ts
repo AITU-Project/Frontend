@@ -1,5 +1,7 @@
-export abstract class AbstractHandler {
-  constructor() {}
+import { IEventBusService } from '../interfaces/event-bus.service';
 
-  handle() {}
+export abstract class AbstractHandler {
+  constructor(protected readonly eventBusService: IEventBusService) {}
+
+  abstract handle(): void;
 }
