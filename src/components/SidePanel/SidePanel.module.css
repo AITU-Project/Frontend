@@ -1,0 +1,51 @@
+.sidePanel {
+  left: 0;
+  top: 0;
+  position: fixed;
+  z-index: 0;
+  height: 100%;
+  background-color: #1b263b;
+  width: 340px;
+
+  box-sizing: border-box;
+
+  padding-left: 1.5vw;
+  padding-right: 1.5vw;
+  padding-top: 3vh;
+}
+
+.sidePanelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.sidePanelBody {
+  margin-top: 10vh;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5vh;
+}
+
+.sidePanelLogo {
+  border-radius: 10px;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+}
+
+.sidePanelTitle {
+  width: 100%;
+  font-weight: 900;
+  font-size: large;
+  text-align: center;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .sidePanel {
+    display: none;
+  }
+}
