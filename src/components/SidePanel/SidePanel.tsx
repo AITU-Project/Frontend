@@ -1,3 +1,5 @@
+import { useInjection } from 'inversify-react';
+
 import logo from '../../assets/images/logo.png';
 import addDocument from '../../assets/images/side-panel/add-document.svg';
 import identification from '../../assets/images/side-panel/identification.svg';
@@ -6,6 +8,8 @@ import profile from '../../assets/images/side-panel/profile.svg';
 import question from '../../assets/images/side-panel/question.svg';
 import settings from '../../assets/images/side-panel/settings.svg';
 import signIn from '../../assets/images/side-panel/sign-in.svg';
+import { AppEventType, TestEventPayload, TYPES } from '../../types';
+import { IEventBusService } from '../../types/interfaces/event-bus.service';
 import { SidePanelButton } from '../SidePanelButton';
 import style from './SidePanel.module.css';
 
@@ -26,6 +30,8 @@ export function SidePanel(props: SidePanelProps) {
     ['Вход', signIn],
   ]);
 
+  const eventBusService = useInjection<IEventBusService>(TYPES.EventBusService);
+
   return (
     <div className={style.sidePanel}>
       <div className={style.sidePanelHeader}>
@@ -42,7 +48,12 @@ export function SidePanel(props: SidePanelProps) {
             key={key}
             title={key}
             icon={sidePanelContentMap.get(key)!}
-            onClick={() => {}}
+            onClick={() => {
+              eventBusService.pushEvent<TestEventPayload>({
+                type: AppEventType.TestEvent,
+                payload: { message: 'Hello World' },
+              });
+            }}
           ></SidePanelButton>
         ))}
       </div>
