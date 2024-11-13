@@ -10,7 +10,7 @@ interface SidePanelButtonProps {
 
 export function SidePanelButton(props: Readonly<SidePanelButtonProps>) {
   return (
-    <button className={style.sidePanelButton}>
+    <button onClick={props.onClick} className={style.sidePanelButton}>
       <img
         className={style.sidePanelButtonIcon}
         src={props.icon}
