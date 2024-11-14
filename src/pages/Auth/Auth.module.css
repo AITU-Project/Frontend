@@ -1,0 +1,80 @@
+.bodyContainer {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #243b55; /* Dark blue background */
+  font-family: Arial, sans-serif;
+}
+.loginContainer {
+  background-color: #f4f5f7;
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.formField {
+  margin-bottom: 20px;
+  text-align: left;
+  display: grid;
+  justify-content: center;
+}
+
+.label {
+  font-size: 18px;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.submitButton {
+  background-color: #f39c12;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:hover {
+  background-color: #e67e22;
+}
+button {
+  border: 0vh;
+  color: #000000;
+  font-weight: bold;
+}
+.verticalLine {
+  width: 2px;
+  height: 15px;
+  background-color: #000000;
+  display: inline-block;
+  margin: 0 5px;
+}
+.footer {
+  padding-top: 15%;
+}
