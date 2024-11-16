@@ -17,7 +17,7 @@ interface SidePanelProps {
   hidden?: boolean;
 }
 
-export function SidePanel(props: SidePanelProps) {
+export function SidePanel(props: Readonly<SidePanelProps>) {
   if (props.hidden) return null;
 
   const sidePanelContentMap: Map<string, string> = new Map([
