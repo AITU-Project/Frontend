@@ -2,17 +2,21 @@ import { ChangeEventHandler, FocusEventHandler } from 'react';
 
 import style from './Input.module.css';
 
+type InputType = 'text' | 'password';
+
 interface InputProps {
-  placeholder?: string;
+  type: InputType;
+  label?: string;
   name?: string;
   value?: string;
-  label?: string;
+  placeholder?: string;
   notes?: string[];
+  required?: boolean;
   onBlur?: FocusEventHandler<HTMLInputElement>;
   onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
-export function Input(props: InputProps) {
+export function Input(props: Readonly<InputProps>) {
   return (
     <div className={style.container}>
       {props.label !== undefined && (
@@ -23,7 +27,7 @@ export function Input(props: InputProps) {
       <input
         name={props.name}
         className={style.input}
-        type="text"
+        type={props.type}
         placeholder={props.placeholder}
         value={props.value}
         onBlur={props.onBlur}
