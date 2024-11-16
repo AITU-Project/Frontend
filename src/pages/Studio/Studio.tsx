@@ -7,6 +7,7 @@ function Studio() {
     <div className={style.main}>
       <SidePanel />
       <Input
+        type="text"
         placeholder="Введите почту"
         label="Email"
         notes={['* Поле не должно быть пустым']}
