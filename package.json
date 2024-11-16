@@ -27,7 +27,8 @@
     "eject": "react-scripts eject",
     "start:docker": "docker run -p 80:80 react-typescript-app",
     "build:docker": "docker build -t react-typescript-app .",
-    "lint": "npx eslint ./src"
+    "lint": "npx eslint ./src",
+    "format": "npx eslint ./src --fix"
   },
   "browserslist": {
     "production": [
