@@ -1,41 +1,61 @@
+import { useInjection } from 'inversify-react';
 import { useEffect, useState } from 'react';
 import validator from 'validator';
 
 import { Button } from '../../components/Button';
 import { Input } from '../../components/Input/Input';
 import { TextButton } from '../../components/TextButton';
+import { IAuthService, TYPES } from '../../types';
 import styles from './Auth.module.css';
 
 function Auth() {
   const [emailNotes, setEmailNotes] = useState([] as string[]);
   const [passwordNotes, setPasswordNotes] = useState([] as string[]);
 
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const authService = useInjection<IAuthService>(TYPES.AuthService);
+
   useEffect(() => {
     document.title = 'Войти в аккаунт';
   }, []);
 
-  const validateEmail = (
-    event: React.FocusEvent<HTMLInputElement, Element>
-  ) => {
-    const value = event.target.value;
+  const validateEmail = (value: string): boolean => {
+    const valid = validator.isEmail(value);
 
-    if (!validator.isEmail(value)) {
-      setEmailNotes(['Введите нормальную почту сука!']);
+    if (!valid) {
+      setEmailNotes(['* Введите электронную почту']);
     } else {
       setEmailNotes([]);
     }
+
+    setEmail(value);
+    return valid;
   };
 
-  const validatePassword = (
-    event: React.FocusEvent<HTMLInputElement, Element>
-  ) => {
-    const value = event.target.value;
+  const validatePassword = (value: string): boolean => {
+    const valid = value.length >= 8 && value.length < 50;
 
-    if (value.length < 8) {
-      setPasswordNotes(['Пароль не должен быть меньше 8 символов']);
+    if (!valid) {
+      setPasswordNotes(['* Пароль не должен быть меньше 8 символов']);
     } else {
       setPasswordNotes([]);
     }
+
+    setPassword(value);
+    return valid;
+  };
+
+  const login = () => {
+    const isEmailValid = validateEmail(email);
+    const isPasswordValid = validatePassword(password);
+
+    if (!isEmailValid || !isPasswordValid) {
+      return;
+    }
+
+    authService.login(email, password);
   };
 
   return (
@@ -50,7 +70,9 @@ function Auth() {
               label="Email"
               required
               notes={emailNotes}
-              onChange={validateEmail}
+              onChange={(event) => {
+                validateEmail(event.target.value);
+              }}
             />
             <Input
               type="password"
@@ -58,11 +80,13 @@ function Auth() {
               label="Пароль"
               required
               notes={passwordNotes}
-              onChange={validatePassword}
+              onChange={(event) => {
+                validatePassword(event.target.value);
+              }}
             />
           </div>
         </div>
-        <Button title="Войти" onClick={() => {}} />
+        <Button title="Войти" onClick={login} />
         <div className={styles.footer}>
           <TextButton title="Забыли пароль?" onClick={() => {}} />
           <span>|</span>
