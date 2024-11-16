@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import validator from 'validator';
 
 import { Button } from '../../components/Button';
-import { Input } from '../../components/Input/Input';
+import { Input } from '../../components/Input';
 import { TextButton } from '../../components/TextButton';
 import { IAuthService, TYPES } from '../../types';
 import styles from './Auth.module.css';
