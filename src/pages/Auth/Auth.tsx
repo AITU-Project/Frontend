@@ -1,38 +1,33 @@
 import { Button } from '../../components/Button';
+import { Input } from '../../components/Input/Input';
+import { TextButton } from '../../components/TextButton';
 import styles from './Auth.module.css';
 
 function Auth() {
   return (
-    <body className={styles.bodyContainer}>
+    <div className={styles.bodyContainer}>
       <div className={styles.loginContainer}>
-        <h1 className={styles.heading}>Логин</h1>
-        <form>
-          <div className={styles.formField}>
-            <label htmlFor="email" className={styles.label}>
-              Email
-            </label>
-            <input type="email" id="email" required className={styles.input} />
-          </div>
-          <div className={styles.formField}>
-            <label htmlFor="password" className={styles.label}>
-              Пароль
-            </label>
-            <input
+        <div className={styles.formContainer}>
+          <h1 className={styles.title}>Логин</h1>
+          <div className={styles.inputsContainer}>
+            <Input type="text" name="email" label="Email" required notes={[]} />
+            <Input
               type="password"
-              id="password"
+              name="password"
+              label="Пароль"
               required
-              className={styles.input}
+              notes={[]}
             />
           </div>
-          <Button title="Войти" onClick={() => {}}></Button>
-        </form>
+        </div>
+        <Button title="Войти" onClick={() => {}} />
         <div className={styles.footer}>
-          <button>Забыли пароль?</button>
-          <div className={styles.verticalLine}></div>
-          <button>Регистрация</button>
+          <TextButton title="Забыли пароль?" onClick={() => {}} />
+          <span>|</span>
+          <TextButton title="Регистрация" onClick={() => {}} />
         </div>
       </div>
-    </body>
+    </div>
   );
 }
 
