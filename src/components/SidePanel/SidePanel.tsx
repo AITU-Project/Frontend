@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactElement } from 'react';
 
 import logo from '../../assets/images/logo.png';
 import { SidePanelButton } from '../SidePanelButton';
@@ -7,12 +7,14 @@ import style from './SidePanel.module.css';
 export interface SidePanelTabProps {
   title: string;
   icon: string;
+  content?: ReactElement;
   onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 interface SidePanelProps {
-  hidden?: boolean;
   tabs: SidePanelTabProps[];
+  hidden?: boolean;
+  active?: number;
 }
 
 export function SidePanel(props: Readonly<SidePanelProps>) {
@@ -29,12 +31,13 @@ export function SidePanel(props: Readonly<SidePanelProps>) {
       </div>
 
       <div className={style.sidePanelBody}>
-        {props.tabs.map((tab: SidePanelTabProps) => (
+        {props.tabs.map((tab: SidePanelTabProps, index: number) => (
           <SidePanelButton
             key={tab.title}
             title={tab.title}
             icon={tab.icon}
             onClick={tab.onClick}
+            isActiveTab={index === props.active}
           />
         ))}
       </div>
