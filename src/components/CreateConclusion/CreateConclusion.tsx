@@ -1,3 +1,6 @@
+import { ReactNode } from 'react';
+
+import { DialogueButton } from '../DialogueButton';
 import { Section } from '../Section';
 import { SectionButton } from '../SectionButton';
 import { SectionInput } from '../SectionInput';
@@ -5,7 +8,28 @@ import { SectionSelect } from '../SectionSelect';
 import { SectionTextArea } from '../SectionTextArea';
 import style from './CreateConclusion.module.css';
 
-export function CreateConclusion() {
+interface CreateConclusionProps {
+  openDialogue: (props: DialogueContentProps) => void;
+  closeDialogue: CallableFunction;
+}
+
+export interface DialogueContentProps {
+  content: {
+    title: string;
+    description: string[];
+  };
+  children: ReactNode;
+}
+
+export const CreateConclusion = (props: Readonly<CreateConclusionProps>) => {
+  const continueHandler = () => {
+    props.closeDialogue();
+  };
+
+  const cancelHandler = () => {
+    props.closeDialogue();
+  };
+
   return (
     <div className={style.container}>
       <h1 className={style.title}>Создание Заключения</h1>
@@ -170,9 +194,33 @@ export function CreateConclusion() {
         <SectionButton
           title="На согласование"
           type="yellow"
-          onClick={() => {}}
+          onClick={() => {
+            props.openDialogue({
+              content: {
+                title: 'Отправка на согласование!',
+                description: [
+                  'Вы уверены, что хотите отправить документ на согласование?',
+                  'Это действие необратимо. Нажимая "Продолжить" вы соглашаетесь со всеми условиями отправки.',
+                ],
+              },
+              children: (
+                <>
+                  <DialogueButton
+                    title="Отменить"
+                    onClick={cancelHandler}
+                    type={'normal'}
+                  ></DialogueButton>
+                  <DialogueButton
+                    title="Продолжить"
+                    type={'green'}
+                    onClick={continueHandler}
+                  ></DialogueButton>
+                </>
+              ),
+            });
+          }}
         />
       </div>
     </div>
   );
-}
+};
