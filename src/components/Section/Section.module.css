@@ -24,3 +24,11 @@
 
   background-color: white;
 }
+
+.childrenContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  padding-top: 10px;
+}
