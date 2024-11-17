@@ -1,6 +1,14 @@
-import { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import style from './Dialogue.module.css';
+
+export interface DialogueContentProps {
+  content: {
+    title: string;
+    description: string[];
+  };
+  children: ReactNode;
+}
 
 interface DialogueContent {
   title: string;

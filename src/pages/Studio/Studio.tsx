@@ -7,12 +7,10 @@ import profile from '../../assets/images/side-panel/profile.svg';
 import question from '../../assets/images/side-panel/question.svg';
 import settings from '../../assets/images/side-panel/settings.svg';
 import signIn from '../../assets/images/side-panel/sign-in.svg';
-import {
-  CreateConclusion,
-  DialogueContentProps,
-} from '../../components/CreateConclusion';
-import { Dialogue } from '../../components/Dialogue';
+import { CreateConclusion } from '../../components/CreateConclusion';
+import { Dialogue, DialogueContentProps } from '../../components/Dialogue';
 import { Loading } from '../../components/Loading';
+import { Profile } from '../../components/Profile';
 import { SidePanel, SidePanelTabProps } from '../../components/SidePanel';
 import style from './Studio.module.css';
 
@@ -74,7 +72,7 @@ function Studio() {
       icon: profile,
       onClick: () => {
         setActiveTab(3);
-        setTabContent(EmptyPage);
+        setTabContent(Profile({ openDialogue, closeDialogue }));
       },
     },
     {

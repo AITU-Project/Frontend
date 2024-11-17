@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-
+import { DialogueContentProps } from '../Dialogue';
 import { DialogueButton } from '../DialogueButton';
 import { Section } from '../Section';
 import { SectionButton } from '../SectionButton';
@@ -11,14 +10,6 @@ import style from './CreateConclusion.module.css';
 interface CreateConclusionProps {
   openDialogue: (props: DialogueContentProps) => void;
   closeDialogue: CallableFunction;
-}
-
-export interface DialogueContentProps {
-  content: {
-    title: string;
-    description: string[];
-  };
-  children: ReactNode;
 }
 
 export const CreateConclusion = (props: Readonly<CreateConclusionProps>) => {
