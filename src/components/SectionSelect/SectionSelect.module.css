@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.label {
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.select {
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+
+  border-color: #1b263b;
+  background-color: white;
+
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}

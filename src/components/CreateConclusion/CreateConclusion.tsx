@@ -1,6 +1,7 @@
 import { Section } from '../Section';
 import { SectionButton } from '../SectionButton';
 import { SectionInput } from '../SectionInput';
+import { SectionSelect } from '../SectionSelect';
 import { SectionTextArea } from '../SectionTextArea';
 import style from './CreateConclusion.module.css';
 
@@ -47,15 +48,68 @@ export function CreateConclusion() {
             name="called-fullname"
           />
           <SectionInput label="Место работы" type="text" name="working-place" />
-          <SectionInput
+          <SectionSelect
             label="Должность вызываемого"
-            type="text"
             name="status"
+            placeholder="Выберите должность"
+            options={['Инспектор', 'Следователь', 'Аналитик']}
           />
-          <SectionInput label="Регион" type="text" name="region" />
+          <SectionSelect
+            label="Регион"
+            name="region"
+            placeholder="Выберите регион"
+            options={['Астана', 'Алматы', 'Шымкент']}
+          />
           <SectionTextArea
             label="Планируемые следственные действия"
             name="plans"
+          />
+        </Section>
+        <Section title="Информация о следственном действии">
+          <SectionInput
+            label="Дата и время проведения"
+            name="date-and-time"
+            type="text"
+          />
+          <SectionSelect
+            label="Место проведения"
+            placeholder="Место проведения"
+            options={[]}
+            name="location"
+          />
+          <SectionInput label="Следователь" type="text" name="spy" />
+          <SectionSelect
+            label="Статус по делу вызываемого"
+            placeholder="Статус по делу вызываемого"
+            options={[]}
+            name="status"
+          />
+          <SectionInput
+            label="Отношение вызывающего к событию и субъекту"
+            type="text"
+            name="spy"
+          />
+          <SectionSelect
+            label="Виды планируемого действия"
+            placeholder="Виды планируемого действия"
+            options={[]}
+            name="types"
+          />
+          <SectionSelect
+            label="Относится ли к бизнесу"
+            placeholder="Относится ли к бизнесу"
+            options={['Да', 'Нет']}
+            name="business?"
+          />
+          <SectionInput
+            label="Обоснование и необходимость участия предпринимателя"
+            type="text"
+            name="enterpreneur"
+          />
+          <SectionInput
+            label="Результат от планируемого следственного действия"
+            type="text"
+            name="result"
           />
         </Section>
         <Section title="История вызовов">
@@ -90,13 +144,14 @@ export function CreateConclusion() {
             name="previous-call-reasons"
           />
         </Section>
-        <Section title="Пусть согласования заключения">
+        <Section title="Путь согласования заключения">
           <SectionInput label="Должность" type="text" name="status" />
           <SectionInput label="ФИО" type="text" name="fullname" />
-          <SectionInput
+          <SectionSelect
             label="Статус согласования"
-            type="text"
             name="status-of"
+            placeholder="На доработку"
+            options={['На доработку', 'Утверждено', 'Отказ']}
           />
           <SectionInput
             label="Дата и время согласования"
