@@ -8,11 +8,12 @@ import question from '../../assets/images/side-panel/question.svg';
 import settings from '../../assets/images/side-panel/settings.svg';
 import signIn from '../../assets/images/side-panel/sign-in.svg';
 import { CreateConclusion } from '../../components/CreateConclusion';
+import { Loading } from '../../components/Loading';
 import { SidePanel, SidePanelTabProps } from '../../components/SidePanel';
 import style from './Studio.module.css';
 
 const EmptyPage = () => {
-  return <></>;
+  return <Loading />;
 };
 
 function Studio() {
