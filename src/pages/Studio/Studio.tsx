@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import addDocument from '../../assets/images/side-panel/add-document.svg';
 import identification from '../../assets/images/side-panel/identification.svg';
@@ -19,6 +19,10 @@ const EmptyPage = () => {
 function Studio() {
   const [activeTab, setActiveTab] = useState(-1);
   const [tabContent, setTabContent] = useState(EmptyPage);
+
+  useEffect(() => {
+    document.title = 'Автоматизация повесток и вызовов';
+  }, []);
 
   const sidePanelTabs: SidePanelTabProps[] = [
     {
