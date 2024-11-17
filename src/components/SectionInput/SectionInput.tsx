@@ -1,6 +1,6 @@
 import style from './SectionInput.module.css';
 
-type SectionInputTypes = 'text';
+type SectionInputTypes = 'text' | 'date' | 'datetime-local';
 
 interface SectionInputProps {
   label: string;

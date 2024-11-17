@@ -42,7 +42,7 @@ export const CreateConclusion = (props: Readonly<CreateConclusionProps>) => {
           />
           <SectionInput
             label="Дата создания документа"
-            type="text"
+            type="date"
             name="creation-date"
           />
           <SectionInput
@@ -52,7 +52,7 @@ export const CreateConclusion = (props: Readonly<CreateConclusionProps>) => {
           />
           <SectionInput
             label="Дата регистрации дела"
-            type="text"
+            type="date"
             name="registration-date"
           />
           <SectionInput label="Статья УК" type="text" name="article" />
@@ -93,7 +93,7 @@ export const CreateConclusion = (props: Readonly<CreateConclusionProps>) => {
           <SectionInput
             label="Дата и время проведения"
             name="date-and-time"
-            type="text"
+            type="datetime-local"
           />
           <SectionSelect
             label="Место проведения"
@@ -153,13 +153,13 @@ export const CreateConclusion = (props: Readonly<CreateConclusionProps>) => {
             name="previous-call-status"
           />
           <SectionInput
-            label="Время прихода"
-            type="text"
+            label="Дата и время прихода"
+            type="datetime-local"
             name="previous-call-arrival"
           />
           <SectionInput
-            label="Время ухода"
-            type="text"
+            label="Дата и время ухода"
+            type="datetime-local"
             name="previous-call-leave"
           />
           <SectionInput
@@ -179,7 +179,7 @@ export const CreateConclusion = (props: Readonly<CreateConclusionProps>) => {
           />
           <SectionInput
             label="Дата и время согласования"
-            type="text"
+            type="datetime-local"
             name="datetime-of"
           />
           <SectionInput
