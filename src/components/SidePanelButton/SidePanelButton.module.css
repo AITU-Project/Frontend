@@ -13,6 +13,48 @@
   height: 4vh;
 }
 
+.activeTab {
+  background-color: #b1faff;
+  position: absolute;
+
+  z-index: 100;
+
+  width: 1em;
+  height: 3em;
+}
+
+.leftActiveTab {
+  left: 0px;
+  border-radius: 0em 1em 1em 0;
+  animation: slide-in-left 250ms ease-in-out forwards;
+}
+
+.rightActiveTab {
+  right: 0px;
+  border-radius: 1em 0em 0em 1em;
+  animation: slide-in-right 250ms ease-in-out forwards;
+}
+
+@keyframes slide-in-right {
+  from {
+    right: -1em;
+  }
+
+  to {
+    right: 0px;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    left: -1em;
+  }
+
+  to {
+    left: 0px;
+  }
+}
+
 .sidePanelButtonTitle {
   color: white;
   font-size: large;
