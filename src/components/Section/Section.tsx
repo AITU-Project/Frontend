@@ -11,7 +11,7 @@ export function Section(props: Readonly<SectionProps>) {
   return (
     <div className={style.container}>
       <span className={style.header}>{props.title}</span>
-      {props.children}
+      <div className={style.childrenContainer}>{props.children}</div>
     </div>
   );
 }
