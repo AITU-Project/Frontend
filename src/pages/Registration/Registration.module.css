@@ -1,0 +1,59 @@
+.bodyContainer {
+  height: 100%;
+  width: 100%;
+
+  position: fixed;
+
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #d4e7f3;
+}
+
+.loginContainer {
+  width: 737px;
+  border-radius: 12px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 50px;
+
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+  background-color: #fff;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  font-size: 36px;
+  font-weight: bold;
+  color: black;
+}
+.inputsContainer {
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.leftInputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.rightInputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
