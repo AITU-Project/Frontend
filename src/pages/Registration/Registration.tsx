@@ -1,19 +1,20 @@
 import { useInjection } from 'inversify-react';
 import { ComponentType, useEffect, useState } from 'react';
 
-import { RegistrationStepProfile } from '../../components/forms/RegistrationStepProfile';
-import { RegistrationStepWork } from '../../components/forms/RegistrationStepWork';
-import { Loading } from '../../components/shared/Loading';
-import { CreateUserDTO, IAuthService, TYPES } from '../../types';
+import {
+  RegistrationStepProfile,
+  RegistrationStepWork,
+} from '../../components/forms';
+import { Loading } from '../../components/shared';
+import {
+  CreateUserDTO,
+  IAuthService,
+  RegistrationStepProps,
+  TYPES,
+} from '../../types';
 import styles from './Registration.module.css';
 
 type RegistrationStep = ComponentType<RegistrationStepProps>;
-
-export interface RegistrationStepProps {
-  nextStep: () => void;
-  patchDto: (values: Partial<CreateUserDTO>) => Partial<CreateUserDTO>;
-  submitRequest: (data: CreateUserDTO) => void;
-}
 
 const steps: RegistrationStep[] = [
   RegistrationStepProfile,
