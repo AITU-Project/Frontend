@@ -1,64 +1,69 @@
-import { ChangeEvent, useState } from 'react';
+import { useInjection } from 'inversify-react';
+import { ComponentType, useEffect, useState } from 'react';
 
-import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
-import { RadioButton } from '../../components/RadioButton';
+import { Loading } from '../../components/Loading';
+import { RegistrationStepProfile } from '../../components/RegistrationStepProfile';
+import { RegistrationStepWork } from '../../components/RegistrationStepWork';
+import { CreateUserDTO, IAuthService, TYPES } from '../../types';
 import styles from './Registration.module.css';
 
-function Registration() {
-  const [selectedOption, setSelectedOption] = useState<string>();
+type RegistrationStep = ComponentType<RegistrationStepProps>;
 
-  const handleRadioChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(event.target.value);
+export interface RegistrationStepProps {
+  nextStep: () => void;
+  patchDto: (values: Partial<CreateUserDTO>) => Partial<CreateUserDTO>;
+  submitRequest: (data: CreateUserDTO) => void;
+}
+
+const steps: RegistrationStep[] = [
+  RegistrationStepProfile,
+  RegistrationStepWork,
+];
+
+function Registration() {
+  useEffect(() => {
+    document.title = 'Создание аккаунта';
+  }, []);
+
+  const authService: IAuthService = useInjection(TYPES.AuthService);
+
+  const [dto, setDto] = useState({} as Partial<CreateUserDTO>);
+  const [step, setStep] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  const patchDto = (values: Partial<CreateUserDTO>) => {
+    const merge = { ...dto, ...values };
+    setDto(merge);
+    return merge;
   };
+
+  const nextStep = () => {
+    setStep(step + 1);
+  };
+
+  const submitRequest = (data: CreateUserDTO) => {
+    console.log(data);
+    // authService.register(data);
+    setLoading(true);
+  };
+
+  if (loading || step >= steps.length) {
+    return <Loading />;
+  }
+
+  const StepComponent = steps[step];
+
   return (
     <div className={styles.bodyContainer}>
-      <div className={styles.loginContainer}>
-        <div className={styles.formContainer}>
-          <h1 className={styles.title}>Добро пожаловать</h1>
-          <div className={styles.inputsContainer}>
-            <div className={styles.leftInputsContainer}>
-              <Input type="text" name="email" label="Имя" required />
-              <Input type="password" name="password" label="Email" required />
-              <Input
-                type="password"
-                name="password"
-                label="Новый пароль"
-                required
-              />
-            </div>
-            <div className={styles.rightInputsContainer}>
-              <Input type="password" name="password" label="Фамилия" required />
-              <label className={styles.radioLabel}>Пол</label>
-              <div className={styles.radioContainer}>
-                <RadioButton
-                  name="gender"
-                  label="Мужской"
-                  value="option1"
-                  checked={selectedOption === 'option1'}
-                  onChange={handleRadioChange}
-                />
-                <RadioButton
-                  name="gender"
-                  label="Женский"
-                  value="option2"
-                  checked={selectedOption === 'option2'}
-                  onChange={handleRadioChange}
-                />
-              </div>
-              <Input
-                type="password"
-                name="password"
-                label="Повторите пароль"
-                required
-              />
-            </div>
-          </div>
-        </div>
-        <div className={styles.rightFormContainer}></div>
-        <Button title="Войти" onClick={() => {}} />
+      <div className={styles.stepContainer}>
+        <StepComponent
+          patchDto={patchDto}
+          nextStep={nextStep}
+          submitRequest={submitRequest}
+        />
       </div>
     </div>
   );
 }
+
 export default Registration;
