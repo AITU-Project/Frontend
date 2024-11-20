@@ -1,12 +1,12 @@
 import { Provider } from 'inversify-react';
 
 import { container } from './inversify.config';
-import Registration from './pages/Registration/Registration';
+import Studio from './pages/Studio/Studio';
 
 function App() {
   return (
     <Provider container={container}>
-      <Registration />
+      <Studio />
     </Provider>
   );
 }

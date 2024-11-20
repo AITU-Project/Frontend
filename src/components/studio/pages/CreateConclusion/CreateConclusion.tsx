@@ -1,15 +1,10 @@
+import { StudioPageProps } from '../../../../types';
 import { DialogueButton, SectionButton } from '../../../buttons';
 import { SectionInput, SectionSelect, SectionTextArea } from '../../../inputs';
-import { DialogueContentProps } from '../../../shared';
 import { Section } from '../../components/Section';
 import style from './CreateConclusion.module.css';
 
-interface CreateConclusionProps {
-  openDialogue: (props: DialogueContentProps) => void;
-  closeDialogue: CallableFunction;
-}
-
-export const CreateConclusion = (props: Readonly<CreateConclusionProps>) => {
+export const CreateConclusion = (props: Readonly<StudioPageProps>) => {
   const continueHandler = () => {
     props.closeDialogue();
   };

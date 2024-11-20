@@ -7,3 +7,4 @@ export * from './interfaces/auth.service';
 export * from './interfaces/event-bus.service';
 export * from './inversify.types';
 export * from './props/registration.steps';
+export * from './props/studio.pages';

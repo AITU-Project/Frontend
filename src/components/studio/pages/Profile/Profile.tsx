@@ -1,15 +1,10 @@
 import profilePhoto from '../../../../assets/images/profile.svg';
+import { StudioPageProps } from '../../../../types';
 import { DialogueButton, TextButton } from '../../../buttons';
 import { Input } from '../../../inputs';
-import { DialogueContentProps } from '../../../shared';
 import style from './Profile.module.css';
 
-interface ProfileProps {
-  openDialogue: (props: DialogueContentProps) => void;
-  closeDialogue: CallableFunction;
-}
-
-export function Profile(props: Readonly<ProfileProps>) {
+export function Profile(props: Readonly<StudioPageProps>) {
   const cancelHandler = () => {
     props.closeDialogue();
   };
