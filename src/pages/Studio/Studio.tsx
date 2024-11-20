@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ComponentType, useEffect, useState } from 'react';
 
 import addDocument from '../../assets/images/side-panel/add-document.svg';
 import identification from '../../assets/images/side-panel/identification.svg';
@@ -20,13 +20,16 @@ import {
 } from '../../components/studio';
 import style from './Studio.module.css';
 
-const EmptyPage = () => {
-  return <Loading />;
-};
+interface StudioPageProps {
+  openDialogue: (content: DialogueContentProps) => void;
+  closeDialogue: () => void;
+}
+
+type StudioPage = ComponentType<StudioPageProps>;
 
 function Studio() {
   const [activeTab, setActiveTab] = useState(-1);
-  const [tabContent, setTabContent] = useState(EmptyPage);
+  const [tabContent, setTabContent] = useState(Loading as CallableFunction);
 
   const [dialogueContent, setDialogueContent] = useState(
     {} as DialogueContentProps
@@ -54,7 +57,7 @@ function Studio() {
       icon: identification,
       onClick: () => {
         setActiveTab(0);
-        setTabContent(EmptyPage);
+        setTabContent(Loading);
       },
     },
     {
@@ -62,7 +65,7 @@ function Studio() {
       icon: addDocument,
       onClick: () => {
         setActiveTab(1);
-        setTabContent(CreateConclusion({ openDialogue, closeDialogue }));
+        setTabContent(CreateConclusion);
       },
     },
     {
@@ -70,7 +73,7 @@ function Studio() {
       icon: menu,
       onClick: () => {
         setActiveTab(2);
-        setTabContent(EmptyPage);
+        setTabContent(Loading);
       },
     },
     {
@@ -78,7 +81,7 @@ function Studio() {
       icon: profile,
       onClick: () => {
         setActiveTab(3);
-        setTabContent(Profile({ openDialogue, closeDialogue }));
+        setTabContent(Profile);
       },
     },
     {
@@ -86,7 +89,7 @@ function Studio() {
       icon: settings,
       onClick: () => {
         setActiveTab(4);
-        setTabContent(EmptyPage);
+        setTabContent(Loading);
       },
     },
     {
@@ -94,7 +97,7 @@ function Studio() {
       icon: question,
       onClick: () => {
         setActiveTab(5);
-        setTabContent(EmptyPage);
+        setTabContent(Loading);
       },
     },
     {
@@ -102,15 +105,21 @@ function Studio() {
       icon: signIn,
       onClick: () => {
         setActiveTab(6);
-        setTabContent(EmptyPage);
+        setTabContent(Loading);
       },
     },
   ];
 
+  const TabContentComponent: StudioPage = tabContent as StudioPage;
+
   return (
     <div className={style.main}>
       <SidePanel tabs={sidePanelTabs} active={activeTab} />
-      {tabContent}
+
+      <TabContentComponent
+        openDialogue={openDialogue}
+        closeDialogue={closeDialogue}
+      />
 
       <Dialogue
         content={dialogueContent.content}
