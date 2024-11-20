@@ -1,7 +1,7 @@
 import { MouseEventHandler, ReactElement } from 'react';
 
 import logo from '../../assets/images/logo.png';
-import { SidePanelButton } from '../SidePanelButton';
+import { SidePanelButton } from '../../buttons';
 import style from './SidePanel.module.css';
 
 export interface SidePanelTabProps {

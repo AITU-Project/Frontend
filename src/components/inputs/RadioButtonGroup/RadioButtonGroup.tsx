@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react';
 
-import { combineStyles } from '../../utils/combineStyleClasses';
-import { RadioButton } from '../RadioButton/RadioButton';
+import { combineStyles } from '../../../utils/combineStyleClasses';
+import { RadioButton } from '../../inputs';
 import style from './RadioButtonGroup.module.css';
 
 type RadioPlacement = 'rows' | 'columns';

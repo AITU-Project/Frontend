@@ -7,11 +7,17 @@ import profile from '../../assets/images/side-panel/profile.svg';
 import question from '../../assets/images/side-panel/question.svg';
 import settings from '../../assets/images/side-panel/settings.svg';
 import signIn from '../../assets/images/side-panel/sign-in.svg';
-import { CreateConclusion } from '../../components/CreateConclusion';
-import { Dialogue, DialogueContentProps } from '../../components/Dialogue';
-import { Loading } from '../../components/Loading';
-import { Profile } from '../../components/Profile';
-import { SidePanel, SidePanelTabProps } from '../../components/SidePanel';
+import {
+  Dialogue,
+  DialogueContentProps,
+  Loading,
+} from '../../components/shared';
+import {
+  CreateConclusion,
+  Profile,
+  SidePanel,
+  SidePanelTabProps,
+} from '../../components/studio';
 import style from './Studio.module.css';
 
 const EmptyPage = () => {

@@ -2,9 +2,8 @@ import { useInjection } from 'inversify-react';
 import { useEffect, useState } from 'react';
 import validator from 'validator';
 
-import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
-import { TextButton } from '../../components/TextButton';
+import { Button, TextButton } from '../../components/buttons';
+import { Input } from '../../components/inputs';
 import { IAuthService, TYPES } from '../../types';
 import styles from './Auth.module.css';
 

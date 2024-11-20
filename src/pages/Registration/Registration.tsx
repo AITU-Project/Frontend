@@ -1,9 +1,9 @@
 import { useInjection } from 'inversify-react';
 import { ComponentType, useEffect, useState } from 'react';
 
-import { Loading } from '../../components/Loading';
-import { RegistrationStepProfile } from '../../components/RegistrationStepProfile';
-import { RegistrationStepWork } from '../../components/RegistrationStepWork';
+import { RegistrationStepProfile } from '../../components/forms/RegistrationStepProfile';
+import { RegistrationStepWork } from '../../components/forms/RegistrationStepWork';
+import { Loading } from '../../components/shared/Loading';
 import { CreateUserDTO, IAuthService, TYPES } from '../../types';
 import styles from './Registration.module.css';
 
@@ -42,8 +42,7 @@ function Registration() {
   };
 
   const submitRequest = (data: CreateUserDTO) => {
-    console.log(data);
-    // authService.register(data);
+    authService.register(data);
     setLoading(true);
   };
 

@@ -1,10 +1,7 @@
-import { DialogueContentProps } from '../Dialogue';
-import { DialogueButton } from '../DialogueButton';
-import { Section } from '../Section';
-import { SectionButton } from '../SectionButton';
-import { SectionInput } from '../SectionInput';
-import { SectionSelect } from '../SectionSelect';
-import { SectionTextArea } from '../SectionTextArea';
+import { DialogueButton, SectionButton } from '../../../buttons';
+import { SectionInput, SectionSelect, SectionTextArea } from '../../../inputs';
+import { DialogueContentProps } from '../../../shared';
+import { Section } from '../../Section';
 import style from './CreateConclusion.module.css';
 
 interface CreateConclusionProps {

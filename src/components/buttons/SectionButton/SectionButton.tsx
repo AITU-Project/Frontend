@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 
-import { combineStyles } from '../../utils/combineStyleClasses';
+import { combineStyles } from '../../../utils/combineStyleClasses';
 import style from './SectionButton.module.css';
 
 type SectionButtonType = 'yellow' | 'green';

@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 
-import { combineStyles } from '../../utils/combineStyleClasses';
+import { combineStyles } from '../../../utils/combineStyleClasses';
 import style from './DialogueButton.module.css';
 
 type DialogueButtonType = 'red' | 'normal' | 'green';
