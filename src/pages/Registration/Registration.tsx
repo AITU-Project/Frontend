@@ -42,7 +42,7 @@ function Registration() {
                   name="gender"
                   label="Женский"
                   value="option2"
-                  checked={selectedOption === 'option1'}
+                  checked={selectedOption === 'option2'}
                   onChange={handleRadioChange}
                 />
               </div>
