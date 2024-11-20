@@ -36,8 +36,8 @@ export function ProfileForm(props: Readonly<RegistrationFormProps>) {
     repeatPassword: [],
   } as NoteStore);
 
-  useEffect(() => {
-    const notes: NoteStore = {
+  const validate = (strict: boolean): boolean => {
+    const newNotes: NoteStore = {
       name: [],
       surname: [],
       email: [],
@@ -46,19 +46,47 @@ export function ProfileForm(props: Readonly<RegistrationFormProps>) {
       repeatPassword: [],
     };
 
-    if (values.name === '') {
-      notes.name.push('* Поле "Имя" не должно быть пустым');
+    if ((strict || notes.name.length != 0) && validator.isEmpty(values.name)) {
+      newNotes.name.push('* Не должно быть пустым');
     }
 
-    if (values.surname === '') {
-      notes.surname.push('* Поле "Фамилия" не должно быть пустым');
+    if (
+      (strict || notes.surname.length != 0) &&
+      validator.isEmpty(values.surname)
+    ) {
+      newNotes.surname.push('* Не должно быть пустым');
     }
 
-    if (validator.isEmail(values.email)) {
-      notes.email.push('* Введите адрес электронной почты');
+    if (
+      (strict || notes.email.length != 0 || !validator.isEmpty(values.email)) &&
+      !validator.isEmail(values.email)
+    ) {
+      newNotes.email.push('* Это не электронная почта');
     }
 
-    setNotes(notes);
+    if ((strict || notes.sex.length != 0) && validator.isEmpty(values.sex)) {
+      newNotes.sex.push('* Укажите свой пол');
+    }
+
+    if (
+      (strict ||
+        notes.password.length != 0 ||
+        !validator.isEmpty(values.password)) &&
+      !validator.isStrongPassword(values.password)
+    ) {
+      newNotes.password.push('* Введите сложный пароль');
+    }
+
+    if (values.repeatPassword !== values.password) {
+      newNotes.repeatPassword.push('* Пароли не совпадают');
+    }
+
+    setNotes(newNotes);
+    return Object.values(newNotes).some((values) => values.length != 0);
+  };
+
+  useEffect(() => {
+    validate(false);
   }, [values]);
 
   const patchValues = (newValues: Partial<FormValues>) => {
@@ -70,80 +98,78 @@ export function ProfileForm(props: Readonly<RegistrationFormProps>) {
       <div className={styles.formContainer}>
         <h1 className={styles.title}>Добро пожаловать</h1>
         <div className={styles.inputs}>
-          <div className={styles.row}>
-            <Input
-              type="text"
-              name="name"
-              label="Имя"
-              notes={notes.name}
-              required
-              onChange={(event) => {
-                patchValues({ name: event.target.value });
-              }}
-            />
-            <Input
-              type="text"
-              name="surname"
-              label="Фамилия"
-              notes={notes.surname}
-              required
-              onChange={(event) => {
-                patchValues({ surname: event.target.value });
-              }}
-            />
-          </div>
-          <div className={styles.row}>
-            <Input
-              type="text"
-              name="email"
-              label="Email"
-              notes={notes.email}
-              required
-              onChange={(event) => {
-                patchValues({ email: event.target.value });
-              }}
-            />
-            <RadioButtonGroup
-              name="sex"
-              label="Пол"
-              placement="rows"
-              notes={notes.sex}
-              options={[
-                { title: 'Мужской', value: 'male' },
-                { title: 'Женский', value: 'female' },
-              ]}
-              onChange={(event) => {
-                patchValues({ sex: event.target.value });
-              }}
-            />
-          </div>
-          <div className={styles.row}>
-            <Input
-              type="password"
-              name="password"
-              label="Новый пароль"
-              notes={notes.password}
-              required
-              onChange={(event) => {
-                patchValues({ password: event.target.value });
-              }}
-            />
-            <Input
-              type="password"
-              name="repeat-password"
-              notes={notes.repeatPassword}
-              label="Повторите пароль"
-              required
-              onChange={(event) => {
-                patchValues({ repeatPassword: event.target.value });
-              }}
-            />
-          </div>
+          <Input
+            type="text"
+            name="name"
+            label="Имя"
+            notes={notes.name}
+            required
+            onChange={(event) => {
+              patchValues({ name: event.target.value });
+            }}
+          />
+          <Input
+            type="text"
+            name="surname"
+            label="Фамилия"
+            notes={notes.surname}
+            required
+            onChange={(event) => {
+              patchValues({ surname: event.target.value });
+            }}
+          />
+          <Input
+            type="text"
+            name="email"
+            label="Email"
+            notes={notes.email}
+            required
+            onChange={(event) => {
+              patchValues({ email: event.target.value });
+            }}
+          />
+          <RadioButtonGroup
+            name="sex"
+            label="Пол"
+            placement="rows"
+            notes={notes.sex}
+            options={[
+              { title: 'Мужской', value: 'male' },
+              { title: 'Женский', value: 'female' },
+            ]}
+            onChange={(event) => {
+              patchValues({ sex: event.target.value });
+            }}
+          />
+          <Input
+            type="password"
+            name="password"
+            label="Новый пароль"
+            notes={notes.password}
+            required
+            onChange={(event) => {
+              patchValues({ password: event.target.value });
+            }}
+          />
+          <Input
+            type="password"
+            name="repeat-password"
+            notes={notes.repeatPassword}
+            label="Повторите пароль"
+            required
+            onChange={(event) => {
+              patchValues({ repeatPassword: event.target.value });
+            }}
+          />
         </div>
       </div>
       <Button
         title="Продолжить"
         onClick={() => {
+          if (validate(true)) {
+            return;
+          }
+
           props.patchDto({
             name: values.name,
             surname: values.surname,
