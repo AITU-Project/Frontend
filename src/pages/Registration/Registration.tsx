@@ -43,8 +43,8 @@ function Registration() {
   };
 
   const submitRequest = (data: CreateUserDTO) => {
-    authService.register(data);
     setLoading(true);
+    authService.register(data);
   };
 
   if (loading || step >= steps.length) {
