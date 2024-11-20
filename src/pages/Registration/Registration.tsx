@@ -22,10 +22,11 @@ function Registration() {
             </div>
             <div className={styles.rightInputsContainer}>
               <Input type="password" name="password" label="Фамилия" required />
-              <RadioButton name="yernur" label="Пол">
-                Мужской
-              </RadioButton>
-              <RadioButton name="yernur" />
+              <label className={styles.radioLabel}>Пол</label>
+              <div className={styles.radioContainer}>
+                <RadioButton name="gender" label="Мужской" />
+                <RadioButton name="gender" label="Женский" />
+              </div>
               <Input
                 type="password"
                 name="password"
