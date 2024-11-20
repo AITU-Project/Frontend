@@ -1,20 +1,19 @@
 import { useState } from 'react';
 
-import { CreateUserDTO, RegistrationStepProps } from '../../../types';
-import { Button } from '../../buttons/Button';
-import { Input } from '../../inputs/Input';
-import { RadioButtonGroup } from '../../inputs/RadioButtonGroup';
-import styles from './RegistrationStepWork.module.css';
+import { CreateUserDTO, RegistrationFormProps } from '../../../types';
+import { Button } from '../../buttons';
+import { Input, RadioButtonGroup } from '../../inputs';
+import styles from './EmployeeForm.module.css';
 
-interface WorkValues {
+interface FormValues {
   role: string;
   region: string;
 }
 
-export function RegistrationStepWork(props: Readonly<RegistrationStepProps>) {
-  const [values, setValues] = useState({} as WorkValues);
+export function EmployeeForm(props: Readonly<RegistrationFormProps>) {
+  const [values, setValues] = useState({} as FormValues);
 
-  const patchValues = (newValues: Partial<WorkValues>) => {
+  const patchValues = (newValues: Partial<FormValues>) => {
     setValues({ ...values, ...newValues });
   };
 

@@ -1,25 +1,19 @@
 import { useInjection } from 'inversify-react';
 import { ComponentType, useEffect, useState } from 'react';
 
-import {
-  RegistrationStepProfile,
-  RegistrationStepWork,
-} from '../../components/forms';
+import { EmployeeForm, ProfileForm } from '../../components/forms';
 import { Loading } from '../../components/shared';
 import {
   CreateUserDTO,
   IAuthService,
-  RegistrationStepProps,
+  RegistrationFormProps,
   TYPES,
 } from '../../types';
 import styles from './Registration.module.css';
 
-type RegistrationStep = ComponentType<RegistrationStepProps>;
+type RegistrationStep = ComponentType<RegistrationFormProps>;
 
-const steps: RegistrationStep[] = [
-  RegistrationStepProfile,
-  RegistrationStepWork,
-];
+const steps: RegistrationStep[] = [ProfileForm, EmployeeForm];
 
 function Registration() {
   useEffect(() => {
