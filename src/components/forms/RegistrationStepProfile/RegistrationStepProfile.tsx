@@ -48,7 +48,7 @@ export function RegistrationStepProfile(
               }}
             />
           </div>
-          <div className={styles.inputsRow}>
+          <div className={styles.row}>
             <Input
               type="text"
               name="email"
@@ -71,7 +71,7 @@ export function RegistrationStepProfile(
               }}
             />
           </div>
-          <div className={styles.inputsRow}>
+          <div className={styles.row}>
             <Input
               type="password"
               name="password"
