@@ -1,7 +1,7 @@
+import profilePhoto from '../../../../assets/images/profile.svg';
 import { DialogueButton, TextButton } from '../../../buttons';
 import { Input } from '../../../inputs';
 import { DialogueContentProps } from '../../../shared';
-import profilePhoto from '../../assets/images/profile.svg';
 import style from './Profile.module.css';
 
 interface ProfileProps {
