@@ -1,4 +1,5 @@
 export * from './abstracts/abstract.handler';
+export * from './dtos/auth.service.dtos';
 export * from './dtos/events.dto';
 export * from './dtos/events.payloads';
 export * from './enums/events.enum';
