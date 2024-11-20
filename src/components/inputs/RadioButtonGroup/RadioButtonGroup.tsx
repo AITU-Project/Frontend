@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react';
 
-import { combineStyles } from '../../../utils/combineStyleClasses';
+import { combineStyles } from '../../../utils';
 import { RadioButton } from '../../inputs';
 import style from './RadioButtonGroup.module.css';
 

@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 
-import { combineStyles } from '../../../utils/combineStyleClasses';
+import { combineStyles } from '../../../utils';
 import style from './SidePanelButton.module.css';
 
 interface SidePanelButtonProps {

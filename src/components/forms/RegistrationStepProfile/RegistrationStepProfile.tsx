@@ -1,9 +1,8 @@
 import { useState } from 'react';
 
-import { RegistrationStepProps } from '../../../pages/Registration/Registration';
-import { Button } from '../../buttons/Button';
-import { Input } from '../../inputs/Input';
-import { RadioButtonGroup } from '../../inputs/RadioButtonGroup';
+import { RegistrationStepProps } from '../../../types';
+import { Button } from '../../buttons';
+import { Input, RadioButtonGroup } from '../../inputs';
 import styles from './RegistrationStepProfile.module.css';
 
 interface ProfileValues {

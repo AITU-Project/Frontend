@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
-import { RegistrationStepProps } from '../../../pages/Registration/Registration';
-import { CreateUserDTO } from '../../../types';
+import { CreateUserDTO, RegistrationStepProps } from '../../../types';
 import { Button } from '../../buttons/Button';
 import { Input } from '../../inputs/Input';
 import { RadioButtonGroup } from '../../inputs/RadioButtonGroup';
