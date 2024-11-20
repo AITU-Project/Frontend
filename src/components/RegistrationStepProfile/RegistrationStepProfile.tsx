@@ -28,8 +28,8 @@ export function RegistrationStepProfile(
     <>
       <div className={styles.formContainer}>
         <h1 className={styles.title}>Добро пожаловать</h1>
-        <div className={styles.inputsContainer}>
-          <div className={styles.inputsRow}>
+        <div className={styles.inputs}>
+          <div className={styles.row}>
             <Input
               type="text"
               name="name"

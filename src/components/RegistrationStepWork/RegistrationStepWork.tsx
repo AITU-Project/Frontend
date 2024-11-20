@@ -22,13 +22,13 @@ export function RegistrationStepWork(props: Readonly<RegistrationStepProps>) {
   return (
     <>
       <div className={styles.formContainer}>
-        <div className={styles.textSection}>
+        <div className={styles.texts}>
           <h1 className={styles.title}>Выбор роли и Регион</h1>
           <span className={styles.subtitle}>
             Чтобы завершить регистрацию, выберите роль и регион
           </span>
         </div>
-        <div className={styles.inputsContainer}>
+        <div className={styles.inputs}>
           <RadioButtonGroup
             name="role"
             label="Роль"

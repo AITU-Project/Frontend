@@ -3,12 +3,6 @@
   flex-direction: column;
 }
 
-.radioContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .title {
   text-align: center;
   font-size: 36px;
@@ -16,27 +10,15 @@
   color: black;
 }
 
-.inputsContainer {
+.inputs {
   width: 600px;
   display: flex;
   flex-direction: column;
   gap: 50px;
 }
 
-.inputsRow {
+.row {
   display: flex;
   flex-direction: row;
   gap: 50px;
-}
-
-.radioInput {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-
-.radioLabel {
-  margin-left: 1.5em;
-  font-weight: bold;
-  color: #6a6a6a;
 }
