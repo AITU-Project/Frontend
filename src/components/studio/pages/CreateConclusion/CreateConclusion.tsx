@@ -1,7 +1,7 @@
 import { DialogueButton, SectionButton } from '../../../buttons';
 import { SectionInput, SectionSelect, SectionTextArea } from '../../../inputs';
 import { DialogueContentProps } from '../../../shared';
-import { Section } from '../../Section';
+import { Section } from '../../components/Section';
 import style from './CreateConclusion.module.css';
 
 interface CreateConclusionProps {
