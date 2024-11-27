@@ -9,7 +9,7 @@ export class ApiService {
     return this.http.get<T>(url);
   }
 
-  post<T>(url: string, body: any) {
+  post<T>(url: string, body: object) {
     return this.http.post<T>(url, body);
   }
 }
