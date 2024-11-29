@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import {
   ValidationService,
   ValidationType,
@@ -15,6 +15,7 @@ import {
 })
 export class SignInComponent {
   private readonly validation = inject(ValidationService);
+  private readonly router = inject(Router);
 
   readonly validators = {
     email: this.validation.manage<string>(ValidationType.Email),
@@ -38,5 +39,7 @@ export class SignInComponent {
     if (!this.isFormValid) {
       return;
     }
+
+    this.router.navigate(['studio']);
   }
 }
