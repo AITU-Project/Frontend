@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -10,7 +11,7 @@ interface MenuOption {
 @Component({
   selector: 'app-side-panel',
   standalone: true,
-  imports: [],
+  imports: [NgClass],
   templateUrl: './side-panel.component.html',
   styleUrl: './side-panel.component.scss',
 })
@@ -52,5 +53,9 @@ export class SidePanelComponent {
 
   click(option: MenuOption) {
     this.router.navigate(['studio', option.route]);
+  }
+
+  isActive(option: MenuOption): boolean {
+    return option.route === this.router.url.split('/')[2];
   }
 }
