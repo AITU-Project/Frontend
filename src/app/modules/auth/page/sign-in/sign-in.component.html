@@ -5,8 +5,18 @@
     <h4>Войти</h4>
   </div>
   <div class="d-flex flex-column gap-3">
-    <app-auth-input title="Почта" placeholder="Введите почту" />
-    <app-auth-input title="Пароль" placeholder="Пароль" type="password" />
+    <app-auth-input
+      title="Почта"
+      placeholder="Введите почту"
+      type="email"
+      name="email"
+    />
+    <app-auth-input
+      title="Пароль"
+      placeholder="Пароль"
+      type="password"
+      name="password"
+    />
   </div>
   <div class="mt-4">
     <app-auth-button title="Войти" />

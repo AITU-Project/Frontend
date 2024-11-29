@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-type InputType = 'text' | 'password';
+type InputType = 'text' | 'password' | 'email';
 
 @Component({
   selector: 'app-auth-input',
@@ -14,4 +14,5 @@ export class AuthInputComponent {
   placeholder = input('');
   value = input('');
   type = input('text' as InputType);
+  name = input('');
 }
