@@ -15,4 +15,5 @@ export class AuthInputComponent {
   value = input('');
   type = input('text' as InputType);
   name = input('');
+  notes = input([] as string[]);
 }

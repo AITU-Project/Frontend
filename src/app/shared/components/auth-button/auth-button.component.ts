@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 
 @Component({
   selector: 'app-auth-button',
@@ -8,6 +8,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './auth-button.component.scss',
 })
 export class AuthButtonComponent {
-  @Input()
-  title: string = '';
+  title = input('');
 }

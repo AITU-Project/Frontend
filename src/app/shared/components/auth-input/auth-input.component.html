@@ -7,4 +7,9 @@
     value="{{ value() }}"
     name="{{ name() }}"
   />
+  <div>
+    @for (note of notes(); track $index) {
+      <span class="text-danger fs-s ms-3">* {{ note }}</span>
+    }
+  </div>
 </div>
