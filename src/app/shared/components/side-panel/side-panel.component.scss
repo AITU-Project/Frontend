@@ -1,0 +1,58 @@
+.panel {
+  width: 340px;
+}
+
+.icon {
+  width: 50px;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: auto max-content auto;
+
+  align-items: center;
+  row-gap: 2em;
+  justify-content: space-between;
+}
+
+.tab {
+  height: 3em;
+}
+
+@mixin active($side) {
+  width: 1em;
+
+  @if $side == 'left' {
+    border-radius: 0em 1em 1em 0;
+    animation: slide-in-left 250ms ease-in-out forwards;
+  } @else if $side == 'right' {
+    border-radius: 1em 0em 0em 1em;
+    animation: slide-in-right 250ms ease-in-out forwards;
+  }
+}
+
+.active-left {
+  @include active(left);
+}
+
+.active-right {
+  @include active(right);
+}
+
+@keyframes slide-in-right {
+  from {
+    margin-right: -1em;
+  }
+  to {
+    margin-right: 0;
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    margin-left: -1em;
+  }
+  to {
+    margin-left: 0;
+  }
+}

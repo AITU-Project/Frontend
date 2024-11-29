@@ -1,0 +1,33 @@
+<div
+  class="panel bg-dark-blue vh-100 py-4 d-flex flex-column gap-5 position-fixed"
+>
+  <div class="d-flex align-items-center gap-3 px-4">
+    <img
+      class="icon rounded"
+      src="assets/images/main.png"
+      alt="Автоматизация Повесток и Вызовов"
+    />
+    <span class="fs-6 text-white text-center">
+      Автоматизация <br />Повесток и Вызовов
+    </span>
+  </div>
+  <div class="tabs overflow-auto">
+    @for (option of options; track $index) {
+      <div
+        [ngClass]="[isActive(option) ? 'bg-sky-blue active-left' : '', 'tab']"
+      ></div>
+
+      <button
+        class="d-flex flex-row gap-3 btn-unstyled"
+        (click)="click(option)"
+        tabindex="0"
+      >
+        <img src="{{ option.icon }}" alt="{{ option.title }}" />
+        <span class="text-white">{{ option.title }}</span>
+      </button>
+      <div
+        [ngClass]="[isActive(option) ? 'bg-sky-blue active-right' : '', 'tab']"
+      ></div>
+    }
+  </div>
+</div>
