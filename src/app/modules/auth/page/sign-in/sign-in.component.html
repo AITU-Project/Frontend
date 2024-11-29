@@ -10,12 +10,14 @@
       placeholder="Введите почту"
       type="email"
       name="email"
+      [validate]="validateEmail"
     />
     <app-auth-input
       title="Пароль"
       placeholder="Пароль"
       type="password"
       name="password"
+      [validate]="validatePassword"
     />
   </div>
   <div class="mt-4">

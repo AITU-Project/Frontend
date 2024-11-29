@@ -1,6 +1,7 @@
 import { Component, input } from '@angular/core';
 
 type InputType = 'text' | 'password' | 'email';
+type Validation = (value: string) => string[];
 
 @Component({
   selector: 'app-auth-input',
@@ -13,7 +14,14 @@ export class AuthInputComponent {
   title = input('');
   placeholder = input('');
   value = input('');
-  type = input('text' as InputType);
+  type = input<InputType>('text');
   name = input('');
-  notes = input([] as string[]);
+  validate = input<Validation>(() => []);
+
+  notes: string[] = [];
+
+  onChange(event: Event) {
+    const element = event.target as HTMLInputElement;
+    this.notes = this.validate()(element.value);
+  }
 }

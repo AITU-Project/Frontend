@@ -6,9 +6,10 @@
     placeholder="{{ placeholder() }}"
     value="{{ value() }}"
     name="{{ name() }}"
+    (input)="onChange($event)"
   />
   <div>
-    @for (note of notes(); track $index) {
+    @for (note of notes; track $index) {
       <span class="text-danger fs-s ms-3">* {{ note }}</span>
     }
   </div>
