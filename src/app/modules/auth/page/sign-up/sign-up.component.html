@@ -1,1 +1,68 @@
-<p>sign-up works!</p>
+<div
+  class="form d-flex flex-column justify-content-center align-items-center gap-3 py-4 px-5"
+>
+  <div class="mb-3 text-center">
+    <h4>Добро пожаловать</h4>
+    <span>Чтобы завершить регистрацию, заполните поля ниже</span>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <app-auth-input title="Имя" placeholder="Введите имя" name="email" />
+    </div>
+    <div class="col">
+      <app-auth-input
+        title="Фамилия"
+        placeholder="Введите фамилию"
+        name="surname"
+      />
+    </div>
+    <div class="col">
+      <app-auth-input title="Роль" placeholder="Введите роль" name="role" />
+    </div>
+    <div class="col">
+      <app-auth-input
+        title="Почта"
+        placeholder="Введите почту"
+        type="email"
+        name="email"
+      />
+    </div>
+    <div class="col">
+      <app-auth-input
+        title="Регион"
+        placeholder="Введите регион"
+        name="region"
+      />
+    </div>
+    <div class="col">
+      <app-auth-input title="Пол" placeholder="Введите пол" name="sex" />
+    </div>
+    <div class="col">
+      <app-auth-input
+        title="Пароль"
+        placeholder="Пароль"
+        type="password"
+        name="password"
+      />
+    </div>
+    <div class="col">
+      <app-auth-input
+        title="Повторите Пароль"
+        placeholder="Повторите пароль"
+        type="password"
+        name="repeat-password"
+      />
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <app-auth-button title="Войти" />
+  </div>
+
+  <div class="d-flex flex-row gap-3 mt-4">
+    <a [routerLink]="['/auth/sign-in']" class="text-black fs-6"
+      >Уже есть аккаунт?</a
+    >
+  </div>
+</div>
