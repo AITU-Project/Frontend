@@ -10,18 +10,18 @@
       placeholder="Введите почту"
       type="email"
       name="email"
-      [validate]="validateEmail"
+      [validate]="validators.email"
     />
     <app-auth-input
       title="Пароль"
       placeholder="Пароль"
       type="password"
       name="password"
-      [validate]="validatePassword"
+      [validate]="validators.password"
     />
   </div>
   <div class="mt-4">
-    <app-auth-button title="Войти" />
+    <app-auth-button title="Войти" (click)="handleClick()" />
   </div>
   <div class="d-flex flex-row gap-3 mt-4">
     <a [routerLink]="['/auth/sign-up']" class="text-black fs-6"

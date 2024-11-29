@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { RouterModule } from '@angular/router';
-import validator from 'validator';
+import {
+  ValidationService,
+  ValidationType,
+} from '../../../../core/services/validation';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,13 +14,29 @@ import validator from 'validator';
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
-  validateEmail(value: string): string[] {
-    return validator.isEmail(value) ? [] : ['Введите настоящую почту!'];
+  private readonly validation = inject(ValidationService);
+
+  readonly validators = {
+    email: this.validation.manage<string>(ValidationType.Email),
+    password: this.validation.manage<string>(ValidationType.Password),
+  };
+
+  readonly validity: Record<string, boolean> = {
+    email: false,
+    password: false,
+  };
+
+  get isFormValid(): boolean {
+    return Object.values(this.validity).every((isValid) => isValid);
   }
 
-  validatePassword(value: string): string[] {
-    return validator.isStrongPassword(value)
-      ? []
-      : ['Ввведите сложный пароль!'];
+  handleInputs(name: string, validity: boolean): void {
+    this.validity[name] = validity;
+  }
+
+  handleClick() {
+    if (!this.isFormValid) {
+      return;
+    }
   }
 }
