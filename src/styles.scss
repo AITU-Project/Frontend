@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/colors.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.bg-deep-blue {
+  background-color: $deep-blue;
+}
+
+.bg-light-white {
+  background-color: $light-white;
+}
+
+.bg-orange {
+  background-color: $orange;
+}
+
+.bg-orange:hover {
+  background-color: $light-orange;
+}
