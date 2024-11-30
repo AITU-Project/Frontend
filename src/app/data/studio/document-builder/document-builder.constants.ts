@@ -1,8 +1,15 @@
 enum InputType {
   Text = 'text',
+  TextArea = 'text-area',
   Date = 'date',
   Datetime = 'datetime',
   Select = 'select',
+}
+
+interface TextAreaInput {
+  name: string;
+  type: InputType.TextArea;
+  value: string;
 }
 
 interface TextInput {
@@ -30,7 +37,12 @@ interface SelectInput {
   value: string;
 }
 
-type Input = TextInput | DateInput | DateTimeInput | SelectInput;
+type Input =
+  | TextInput
+  | DateInput
+  | DateTimeInput
+  | SelectInput
+  | TextAreaInput;
 
 interface Section {
   title: string;
@@ -48,6 +60,21 @@ export const DocumentTemplate: Document = {
       inputs: [
         {
           name: 'Регистрационный номер',
+          type: InputType.Text,
+          value: '',
+        },
+        {
+          name: 'Дата создания документа',
+          type: InputType.Date,
+          value: '',
+        },
+        {
+          name: 'Номер УД (15 цифр)',
+          type: InputType.Text,
+          value: '',
+        },
+        {
+          name: 'Статья УК',
           type: InputType.Text,
           value: '',
         },
