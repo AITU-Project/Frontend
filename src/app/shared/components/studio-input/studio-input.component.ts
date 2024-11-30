@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 
-type InputType = 'text';
+type InputType = 'text' | 'date' | 'datetime-local';
 
 @Component({
   selector: 'app-studio-input',
