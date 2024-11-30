@@ -41,7 +41,7 @@ export class SidePanelComponent {
     },
     {
       icon: 'assets/icons/studio/settings.svg',
-      title: 'Настройка',
+      title: 'Настройки',
       route: 'settings',
     },
     {
