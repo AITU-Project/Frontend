@@ -1,1 +1,10 @@
-<p>studio-select works!</p>
+<div class="d-flex flex-column gap-1 fs-small fw-bold">
+  <span class="ms-3">{{ title() }}</span>
+  <select
+    class="border border-black rounded px-3 py-2 fs-small focus-ring focus-ring-light"
+  >
+    @for (option of options(); track $index) {
+      <option value="option">{{ option }}</option>
+    }
+  </select>
+</div>
