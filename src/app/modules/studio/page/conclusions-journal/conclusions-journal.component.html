@@ -1,1 +1,47 @@
-<p>conclusions-journal works!</p>
+<div class="py-3 px-5 vh-100 overflow-auto">
+  <div class="mb-5">
+    <h2>Журнал заключений</h2>
+  </div>
+  <div class="d-flex flex-column gap-3 fs-xs">
+    <div class="d-flex flex-row justify-content-between">
+      @for (input of search; track $index) {
+        @switch (input.type) {
+          @case ('text') {
+            <input
+              class="border border-black rounded px-1 py-1 focus-ring focus-ring-light"
+              type="text"
+              [placeholder]="input.placeholder"
+            />
+          }
+          @case ('datetime') {
+            <input
+              class="border border-black rounded px-1 py-1 focus-ring focus-ring-light"
+              type="datetime-local"
+            />
+          }
+        }
+      }
+    </div>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            @for (header of table.headers; track $index) {
+              <th class="text-center" scope="col">{{ header }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of rows; track $index) {
+            <tr>
+              <th scope="row">{{ row.id }}</th>
+              @for (key of values(row); track $index) {
+                <td class="text-center">{{ key }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
