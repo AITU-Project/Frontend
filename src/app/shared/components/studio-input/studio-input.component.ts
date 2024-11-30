@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { StudioInputDirective } from '../../directives/studio-input.directive';
 
 type InputType = 'text' | 'date' | 'datetime-local';
 
@@ -9,9 +10,7 @@ type InputType = 'text' | 'date' | 'datetime-local';
   templateUrl: './studio-input.component.html',
   styleUrl: './studio-input.component.scss',
 })
-export class StudioInputComponent {
-  title = input<string>('');
+export class StudioInputComponent extends StudioInputDirective {
   type = input<InputType>('text');
   placeholder = input<string>('');
-  value = input<string>('');
 }

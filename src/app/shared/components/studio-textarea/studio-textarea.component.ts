@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { StudioInputDirective } from '../../directives/studio-input.directive';
 
 @Component({
   selector: 'app-studio-textarea',
@@ -7,8 +8,6 @@ import { Component, input } from '@angular/core';
   templateUrl: './studio-textarea.component.html',
   styleUrl: './studio-textarea.component.scss',
 })
-export class StudioTextareaComponent {
-  title = input<string>('');
+export class StudioTextareaComponent extends StudioInputDirective {
   placeholder = input<string>('');
-  value = input<string>('');
 }

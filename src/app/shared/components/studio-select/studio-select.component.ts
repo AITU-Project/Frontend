@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { StudioInputDirective } from '../../directives/studio-input.directive';
 
 @Component({
   selector: 'app-studio-select',
@@ -7,7 +8,6 @@ import { Component, input } from '@angular/core';
   templateUrl: './studio-select.component.html',
   styleUrl: './studio-select.component.scss',
 })
-export class StudioSelectComponent {
-  title = input('');
+export class StudioSelectComponent extends StudioInputDirective {
   options = input<string[]>([]);
 }
