@@ -1,0 +1,17 @@
+<div class="d-flex flex-column gap-2">
+  <span class="ms-3">{{ title() }}</span>
+  <div class="d-flex flex-row gap-3">
+    @for (button of buttons(); track $index) {
+      <div class="d-flex flex-row gap-2 align-items-center">
+        <input
+          class="radio no-built-in border border-2 rounded-circle"
+          type="radio"
+          value="{{ button.value }}"
+          name="{{ name() }}"
+          (click)="onChange($event)"
+        />
+        <span>{{ button.title }}</span>
+      </div>
+    }
+  </div>
+</div>

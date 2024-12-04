@@ -7,11 +7,15 @@ import { StudioInputComponent } from './components/studio-input/studio-input.com
 import { StudioTextareaComponent } from './components/studio-textarea/studio-textarea.component';
 import { StudioSelectComponent } from './components/studio-select/studio-select.component';
 import { StudioSectionComponent } from './components/studio-section/studio-section.component';
+import { AuthRadioComponent } from './components/auth-radio/auth-radio.component';
+import { AuthSelectComponent } from './components/auth-select/auth-select.component';
 
 const Components = [
   CommonModule,
   AuthInputComponent,
   AuthButtonComponent,
+  AuthRadioComponent,
+  AuthSelectComponent,
   SidePanelComponent,
   StudioInputComponent,
   StudioTextareaComponent,

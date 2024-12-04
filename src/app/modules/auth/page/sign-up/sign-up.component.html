@@ -31,14 +31,35 @@
       />
     </div>
     <div class="col">
-      <app-auth-input
+      <app-auth-select
         title="Регион"
-        placeholder="Введите регион"
         name="region"
-      />
+        placeholder="Выберите регион"
+        [options]="[
+          {
+            title: 'Алматы',
+            value: 'Almaty',
+          },
+          {
+            title: 'Астана',
+            value: 'Astana',
+          },
+          {
+            title: 'Шымкент',
+            value: 'Shymkent',
+          },
+        ]"
+      ></app-auth-select>
     </div>
     <div class="col">
-      <app-auth-input title="Пол" placeholder="Введите пол" name="sex" />
+      <app-auth-radio
+        title="Пол"
+        name="sex"
+        [buttons]="[
+          { title: 'Мужской', value: 'male' },
+          { title: 'Женский', value: 'female' },
+        ]"
+      ></app-auth-radio>
     </div>
     <div class="col">
       <app-auth-input
@@ -50,7 +71,7 @@
     </div>
     <div class="col">
       <app-auth-input
-        title="Повторите Пароль"
+        title="Повторите пароль"
         placeholder="Повторите пароль"
         type="password"
         name="repeat-password"

@@ -48,3 +48,9 @@
   font: inherit;
   color: inherit;
 }
+
+.no-built-in {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
