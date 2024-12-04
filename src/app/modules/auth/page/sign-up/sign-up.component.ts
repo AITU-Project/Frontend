@@ -53,7 +53,7 @@ export class SignUpComponent {
       return;
     }
 
-    this.router.navigate(['studio']);
+    this.router.navigate(['auth', 'verification']);
   }
 
   handleInputs(name: keyof typeof this.validators, validity: boolean): void {

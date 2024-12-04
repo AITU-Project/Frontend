@@ -1,0 +1,22 @@
+<div
+  class="form d-flex flex-column justify-content-center align-items-center gap-3 py-4 px-5"
+>
+  <div class="mb-3 text-center">
+    <h4>Пройдите верификацию</h4>
+    <span class="text-muted"
+      >Пожалуйста проверьте свою почту,<br />
+      вам должен прийти смс для подтверждение</span
+    >
+  </div>
+  <form
+    class="d-flex flex-column justify-content-center align-items-center gap-4"
+  >
+    <app-auth-input
+      class="text-center"
+      title="Проверочный код"
+      placeholder="X-X-X-X-X-X"
+      (content)="handleOutput($event)"
+    />
+    <app-auth-button title="Подтвердить" (click)="handleClick()" />
+  </form>
+</div>
