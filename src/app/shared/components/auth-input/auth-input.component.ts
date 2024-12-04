@@ -19,6 +19,7 @@ export class AuthInputComponent {
   validate = input<ValidatorFunction<string>>(() => []);
 
   validity = output<boolean>();
+  content = output<string>();
 
   notes: string[] = [];
 
@@ -26,5 +27,6 @@ export class AuthInputComponent {
     const element = event.target as HTMLInputElement;
     this.notes = this.validate()(element.value);
     this.validity.emit(this.notes.length === 0);
+    this.content.emit(element.value);
   }
 }

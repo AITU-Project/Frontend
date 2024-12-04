@@ -10,17 +10,45 @@
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
-      <app-auth-input title="Имя" placeholder="Введите имя" name="email" />
+      <app-auth-input
+        title="Имя"
+        placeholder="Введите имя"
+        name="name"
+        [validate]="validators.name"
+        (validity)="handleInputs('name', $event)"
+      />
     </div>
     <div class="col">
       <app-auth-input
         title="Фамилия"
         placeholder="Введите фамилию"
         name="surname"
+        [validate]="validators.surname"
+        (validity)="handleInputs('surname', $event)"
       />
     </div>
     <div class="col">
-      <app-auth-input title="Роль" placeholder="Введите роль" name="role" />
+      <app-auth-select
+        title="Роль"
+        name="role"
+        placeholder="Выберите роль"
+        [options]="[
+          {
+            title: 'Сотрудник',
+            value: 'employee',
+          },
+          {
+            title: 'Аналитик',
+            value: 'analytics',
+          },
+          {
+            title: 'Модератор',
+            value: 'moderator',
+          },
+        ]"
+        [validate]="validators.role"
+        (validity)="handleInputs('role', $event)"
+      ></app-auth-select>
     </div>
     <div class="col">
       <app-auth-input
@@ -28,6 +56,8 @@
         placeholder="Введите почту"
         type="email"
         name="email"
+        [validate]="validators.email"
+        (validity)="handleInputs('email', $event)"
       />
     </div>
     <div class="col">
@@ -49,6 +79,8 @@
             value: 'Shymkent',
           },
         ]"
+        [validate]="validators.region"
+        (validity)="handleInputs('region', $event)"
       ></app-auth-select>
     </div>
     <div class="col">
@@ -59,6 +91,8 @@
           { title: 'Мужской', value: 'male' },
           { title: 'Женский', value: 'female' },
         ]"
+        [validate]="validators.sex"
+        (validity)="handleInputs('sex', $event)"
       ></app-auth-radio>
     </div>
     <div class="col">
@@ -67,6 +101,9 @@
         placeholder="Пароль"
         type="password"
         name="password"
+        [validate]="validators.password"
+        (validity)="handleInputs('password', $event)"
+        (content)="handlePassword($event)"
       />
     </div>
     <div class="col">
@@ -75,12 +112,14 @@
         placeholder="Повторите пароль"
         type="password"
         name="repeat-password"
+        [validate]="validators.repeat"
+        (validity)="handleInputs('repeat', $event)"
       />
     </div>
   </div>
 
   <div class="mt-4">
-    <app-auth-button title="Войти" />
+    <app-auth-button title="Войти" (click)="handleClick()" />
   </div>
 
   <div class="d-flex flex-row gap-3 mt-4">

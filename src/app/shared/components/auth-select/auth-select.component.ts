@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { ValidatorFunction } from '../../../core/services/validation';
 
 interface Option {
   title: string;
@@ -17,4 +18,15 @@ export class AuthSelectComponent {
   name = input<string>('');
   placeholder = input<string>('');
   options = input<Option[]>([]);
+  validate = input<ValidatorFunction<string>>(() => []);
+
+  validity = output<boolean>();
+
+  notes: string[] = [];
+
+  onChange(event: Event) {
+    const element = event.target as HTMLInputElement;
+    this.notes = this.validate()(element.value);
+    this.validity.emit(this.notes.length === 0);
+  }
 }
