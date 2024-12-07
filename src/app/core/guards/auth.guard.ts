@@ -1,15 +1,25 @@
 import { inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { Observable } from 'rxjs';
 
-export function canActivate() {
-  const auth: AuthService = inject(AuthService);
-  const router: Router = inject(Router);
+export const authGuard: CanActivateFn = (
+  next,
+  state
+): Observable<boolean> | Promise<boolean> | boolean => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
 
   if (auth.isAuthenticated()) {
+    if (state.url.includes('auth')) {
+      console.log('Redirecting to studio');
+      router.navigate(['studio']);
+    }
+
     return true;
   } else {
-    router.navigate(['/login']);
+    console.log('Redirecting to sign-in');
+    router.navigate(['auth', 'sign-in']);
     return false;
   }
-}
+};

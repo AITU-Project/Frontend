@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { StudioLayoutComponent } from './layout/studio-layout/studio-layout.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -20,6 +21,7 @@ export const routes: Routes = [
     component: StudioLayoutComponent,
     loadChildren: () =>
       import('./modules/studio/studio.module').then((m) => m.StudioModule),
+    canActivate: [authGuard],
   },
 ];
 
@@ -30,6 +32,5 @@ export const routes: Routes = [
     }),
   ],
   exports: [RouterModule],
-  providers: [],
 })
 export class AppRoutingModule {}
