@@ -70,7 +70,7 @@ export class SignInComponent {
 
   onSubmit(form: FormGroup): void {
     if (form.valid) {
-      console.log(form.value);
+      this.router.navigate(['studio']);
     }
   }
 }
