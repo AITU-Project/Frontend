@@ -9,11 +9,9 @@ import { StudioSelectComponent } from './components/studio-select/studio-select.
 import { StudioSectionComponent } from './components/studio-section/studio-section.component';
 import { AuthRadioComponent } from './components/auth-radio/auth-radio.component';
 import { AuthSelectComponent } from './components/auth-select/auth-select.component';
-import { HttpClientModule } from '@angular/common/http';
 
 const Components = [
   CommonModule,
-  HttpClientModule,
   AuthInputComponent,
   AuthButtonComponent,
   AuthRadioComponent,

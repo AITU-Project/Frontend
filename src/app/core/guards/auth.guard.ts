@@ -8,14 +8,13 @@ export const authGuard: CanActivateFn = (next, state): MaybeAsync<boolean> => {
 
   if (auth.isAuthenticated()) {
     if (state.url.includes('auth')) {
-      console.log('Redirecting to studio');
       router.navigate(['studio']);
     }
-
-    return true;
   } else {
-    console.log('Redirecting to sign-in');
-    router.navigate(['auth', 'sign-in']);
-    return false;
+    if (!state.url.includes('auth')) {
+      router.navigate(['auth', 'sign-in']);
+    }
   }
+
+  return true;
 };

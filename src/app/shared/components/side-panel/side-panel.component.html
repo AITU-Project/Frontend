@@ -29,5 +29,15 @@
         [ngClass]="[isActive(option) ? 'bg-sky-blue active-right' : '', 'tab']"
       ></div>
     }
+    <div></div>
+    <button
+      class="d-flex flex-row gap-3 btn-unstyled"
+      (click)="logout()"
+      tabindex="0"
+    >
+      <img src="assets/icons/studio/logout.svg" alt="Выход" />
+      <span class="text-white">Выход</span>
+    </button>
+    <div></div>
   </div>
 </div>

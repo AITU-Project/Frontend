@@ -1,6 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../core/services/auth/auth.service';
 
 interface MenuOption {
   icon: string;
@@ -17,6 +18,7 @@ interface MenuOption {
 })
 export class SidePanelComponent {
   router = inject(Router);
+  auth = inject(AuthService);
 
   options: MenuOption[] = [
     {
@@ -53,6 +55,11 @@ export class SidePanelComponent {
 
   click(option: MenuOption) {
     this.router.navigate(['studio', option.route]);
+  }
+
+  logout() {
+    this.auth.logout();
+    window.location.reload();
   }
 
   isActive(option: MenuOption): boolean {

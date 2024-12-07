@@ -87,6 +87,7 @@ export class SignInComponent {
       this.subscription = this.auth.login(dto.email, dto.password).subscribe({
         next: (response) => {
           this.auth.save((response as LoginResponse).access_token);
+          window.location.reload();
         },
         error: (error) => {
           console.log(error);
