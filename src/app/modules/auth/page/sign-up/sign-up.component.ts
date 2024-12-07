@@ -11,6 +11,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Contains } from '../../../../shared/directives/auth-input.directive';
+import { AuthService } from '../../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,6 +22,7 @@ import { Contains } from '../../../../shared/directives/auth-input.directive';
 })
 export class SignUpComponent {
   private readonly router = inject(Router);
+  private readonly auth = inject(AuthService);
 
   private readonly controls = {
     firstname: new FormControl('', [Validators.required]),
@@ -95,9 +97,22 @@ export class SignUpComponent {
   }
 
   onSubmit(form: FormGroup): void {
-    console.log(this.form.value);
-    if (form.valid) {
-      this.router.navigate(['auth', 'verify']);
+    if (!form.valid) {
+      return;
     }
+
+    const dto = {
+      email: this.form.get('email')?.value as string,
+      password: this.form.get('password')?.value as string,
+    };
+
+    this.auth.login(dto.email, dto.password).subscribe({
+      next: () => {
+        window.location.reload();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

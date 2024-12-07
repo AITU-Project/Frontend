@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -12,7 +12,6 @@ import {
 import { Contains } from '../../../../shared/directives/auth-input.directive';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { APIService } from '../../../../core/services/api/api.service';
-import { Subscription } from 'rxjs';
 
 export interface LoginResponse {
   access_token: string;
@@ -27,10 +26,7 @@ export interface LoginResponse {
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
-  private readonly router = inject(Router);
   private readonly auth = inject(AuthService);
-
-  private subscription: Subscription | undefined;
 
   private readonly controls = {
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -78,21 +74,23 @@ export class SignInComponent {
   }
 
   onSubmit(form: FormGroup): void {
-    if (form.valid) {
-      const dto = {
-        email: this.form.get('email')?.value as string,
-        password: this.form.get('password')?.value as string,
-      };
-
-      this.subscription = this.auth.login(dto.email, dto.password).subscribe({
-        next: (response) => {
-          this.auth.save((response as LoginResponse).access_token);
-          window.location.reload();
-        },
-        error: (error) => {
-          console.log(error);
-        },
-      });
+    if (!form.valid) {
+      return;
     }
+
+    const dto = {
+      email: this.form.get('email')?.value as string,
+      password: this.form.get('password')?.value as string,
+    };
+
+    this.auth.login(dto.email, dto.password).subscribe({
+      next: (response) => {
+        this.auth.save((response as LoginResponse).access_token);
+        window.location.reload();
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

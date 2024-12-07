@@ -6,7 +6,7 @@ export const authGuard: CanActivateFn = (next, state): MaybeAsync<boolean> => {
   const auth = inject(AuthService);
   const router = inject(Router);
 
-  if (auth.isAuthenticated()) {
+  if (auth.authenticated) {
     if (state.url.includes('auth')) {
       router.navigate(['studio']);
     }
