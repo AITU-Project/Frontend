@@ -10,6 +10,8 @@
     [name]="name()"
     [required]="required()"
     (input)="interaction($event)"
+    [attr.maxLength]="max()"
+    [attr.minLength]="min()"
   />
   @if (notes().length !== 0) {
     <div class="d-flex flex-column gap-1">

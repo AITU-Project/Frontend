@@ -12,4 +12,7 @@ import { AuthInputDirective } from '../../directives/auth-input.directive';
 export class AuthInputComponent extends AuthInputDirective {
   type = input<'text' | 'password' | 'email'>('text');
   placeholder = input<string>('');
+
+  max = input<number | undefined>(undefined);
+  min = input<number | undefined>(undefined);
 }
