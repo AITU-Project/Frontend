@@ -11,7 +11,6 @@ import {
 
 import { Contains } from '../../../../shared/directives/auth-input.directive';
 import { AuthService } from '../../../../core/services/auth/auth.service';
-import { HttpClientModule } from '@angular/common/http';
 import { APIService } from '../../../../core/services/api/api.service';
 import { Subscription } from 'rxjs';
 
@@ -22,13 +21,7 @@ export interface LoginResponse {
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [
-    SharedModule,
-    RouterModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-  ],
+  imports: [SharedModule, RouterModule, FormsModule, ReactiveFormsModule],
   providers: [APIService, AuthService],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',

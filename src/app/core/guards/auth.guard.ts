@@ -1,12 +1,8 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, MaybeAsync, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
-import { Observable } from 'rxjs';
 
-export const authGuard: CanActivateFn = (
-  next,
-  state
-): Observable<boolean> | Promise<boolean> | boolean => {
+export const authGuard: CanActivateFn = (next, state): MaybeAsync<boolean> => {
   const auth = inject(AuthService);
   const router = inject(Router);
 
