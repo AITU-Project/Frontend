@@ -10,16 +10,34 @@ import {
 } from '@angular/forms';
 
 import { Contains } from '../../../../shared/directives/auth-input.directive';
+import { AuthService } from '../../../../core/services/auth/auth.service';
+import { HttpClientModule } from '@angular/common/http';
+import { APIService } from '../../../../core/services/api/api.service';
+import { Subscription } from 'rxjs';
+
+export interface LoginResponse {
+  access_token: string;
+}
 
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [SharedModule, RouterModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    SharedModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [APIService, AuthService],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
   private readonly router = inject(Router);
+  private readonly auth = inject(AuthService);
+
+  private subscription: Subscription | undefined;
 
   private readonly controls = {
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -68,7 +86,19 @@ export class SignInComponent {
 
   onSubmit(form: FormGroup): void {
     if (form.valid) {
-      this.router.navigate(['studio']);
+      const dto = {
+        email: this.form.get('email')?.value as string,
+        password: this.form.get('password')?.value as string,
+      };
+
+      this.subscription = this.auth.login(dto.email, dto.password).subscribe({
+        next: (response) => {
+          this.auth.save((response as LoginResponse).access_token);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
     }
   }
 }
