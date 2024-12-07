@@ -12,6 +12,8 @@ export class APIService {
   }
 
   post<T>(path: string, body: object) {
-    return this.http.post<T>(this.link + path, body);
+    return this.http.post<T>(this.link + path, body, {
+      headers: { 'Content-Type': 'application/json' },
+    });
   }
 }
