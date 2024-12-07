@@ -1,12 +1,12 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { APIService } from '../api/api.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private readonly http = inject(HttpClient);
+  private readonly api = inject(APIService);
 
-  login(username: string, password: string) {
-    console.log(username, password);
+  login(email: string, password: string) {
+    return this.api.post('/users/', { email, password });
   }
 
   logout() {
