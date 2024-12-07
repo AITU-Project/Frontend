@@ -41,7 +41,7 @@ export class SignInComponent {
 
   public readonly form = new FormGroup(this.controls);
 
-  notes = Object.keys(this.controls).reduce(
+  public readonly notes = Object.keys(this.controls).reduce(
     (notes, name) => {
       notes[name as keyof typeof this.controls] = [];
       return notes;
