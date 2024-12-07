@@ -6,11 +6,15 @@ export class AuthService {
   private readonly api = inject(APIService);
 
   login(email: string, password: string) {
-    return this.api.post('/users/', { email, password });
+    return this.api.post('/auth/sign-in', { email, password });
+  }
+
+  save(token: string) {
+    localStorage.setItem('token', token);
   }
 
   logout() {
-    console.log('log out');
+    localStorage.removeItem('token');
   }
 
   isAuthenticated() {
