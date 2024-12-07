@@ -1,9 +1,11 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { APIService } from './services/api/api.service';
+import { AuthService } from './services/auth/auth.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [HttpClientModule],
-  providers: [],
+  providers: [APIService, AuthService],
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
