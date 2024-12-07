@@ -9,4 +9,5 @@ import { Component, input } from '@angular/core';
 })
 export class AuthButtonComponent {
   title = input('');
+  type = input<'button' | 'submit'>('button');
 }

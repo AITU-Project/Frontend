@@ -1,16 +1,21 @@
 <div class="d-flex flex-column gap-2">
-  <span class="ms-3">{{ title() }}</span>
+  @if (title() !== '') {
+    <span class="ms-3">{{ title() }}</span>
+  }
   <input
     class="border-0 rounded px-4 py-2"
-    type="{{ type() }}"
-    placeholder="{{ placeholder() }}"
-    value="{{ value() }}"
-    name="{{ name() }}"
-    (input)="onChange($event)"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [value]="value()"
+    [name]="name()"
+    [required]="required()"
+    (input)="interaction($event)"
   />
-  <div>
-    @for (note of notes; track $index) {
-      <span class="text-danger fs-s ms-3">* {{ note }}</span>
-    }
-  </div>
+  @if (notes().length !== 0) {
+    <div class="d-flex flex-column gap-1">
+      @for (note of notes(); track $index) {
+        <span class="text-danger fs-s ms-3">* {{ note }}</span>
+      }
+    </div>
+  }
 </div>

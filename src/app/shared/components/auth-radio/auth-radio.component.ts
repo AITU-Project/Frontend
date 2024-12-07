@@ -1,5 +1,4 @@
-import { Component, input, output } from '@angular/core';
-import { ValidatorFunction } from '../../../core/services/validation';
+import { Component, input } from '@angular/core';
 
 interface Button {
   title: string;
@@ -17,15 +16,5 @@ export class AuthRadioComponent {
   title = input<string>('');
   name = input<string>('');
   buttons = input<Button[]>([]);
-  validate = input<ValidatorFunction<string>>(() => []);
-
-  validity = output<boolean>();
-
   notes: string[] = [];
-
-  onChange(event: Event) {
-    const element = event.target as HTMLInputElement;
-    this.notes = this.validate()(element.value);
-    this.validity.emit(this.notes.length === 0);
-  }
 }
