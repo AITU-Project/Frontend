@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { AuthInputDirective } from '../../directives/auth-input.directive';
 
 interface Button {
   title: string;
@@ -12,9 +13,6 @@ interface Button {
   templateUrl: './auth-radio.component.html',
   styleUrl: './auth-radio.component.scss',
 })
-export class AuthRadioComponent {
-  title = input<string>('');
-  name = input<string>('');
+export class AuthRadioComponent extends AuthInputDirective {
   buttons = input<Button[]>([]);
-  notes: string[] = [];
 }

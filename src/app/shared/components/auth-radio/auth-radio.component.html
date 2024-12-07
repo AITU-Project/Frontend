@@ -1,21 +1,27 @@
 <div class="d-flex flex-column gap-2">
-  <span class="ms-3">{{ title() }}</span>
+  @if (title() !== '') {
+    <span class="ms-3">{{ title() }}</span>
+  }
   <div class="d-flex flex-row gap-3">
     @for (button of buttons(); track $index) {
       <div class="d-flex flex-row gap-2 align-items-center">
         <input
           class="radio no-built-in border border-2 rounded-circle"
-          type="radio"
-          value="{{ button.value }}"
-          name="{{ name() }}"
+          [type]="'radio'"
+          [value]="button.value"
+          [name]="name()"
+          [required]="required()"
+          (click)="interaction($event)"
         />
         <span>{{ button.title }}</span>
       </div>
     }
   </div>
-  <div>
-    @for (note of notes; track $index) {
-      <span class="text-danger fs-s ms-3">* {{ note }}</span>
-    }
-  </div>
+  @if (notes().length !== 0) {
+    <div class="d-flex flex-column gap-1">
+      @for (note of notes(); track $index) {
+        <span class="text-danger fs-s ms-3">* {{ note }}</span>
+      }
+    </div>
+  }
 </div>

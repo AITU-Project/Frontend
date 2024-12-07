@@ -8,98 +8,131 @@
     >
   </div>
 
-  <div class="row row-cols-1 row-cols-md-3 g-4">
-    <div class="col">
-      <app-auth-input title="Имя" placeholder="Введите имя" name="name" />
+  <form [formGroup]="form" (submit)="onSubmit(form)">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <app-auth-input
+          [title]="'Имя'"
+          [placeholder]="'Введите имя'"
+          [name]="'firstname'"
+          (contains)="onInput($event)"
+          [notes]="notes.firstname"
+          [required]="true"
+          [value]="form.get('firstname')?.value ?? ''"
+        />
+      </div>
+      <div class="col">
+        <app-auth-input
+          [title]="'Фамилия'"
+          [placeholder]="'Введите фамилию'"
+          [name]="'surname'"
+          (contains)="onInput($event)"
+          [notes]="notes.firstname"
+          [required]="true"
+          [value]="form.get('surname')?.value ?? ''"
+        />
+      </div>
+      <div class="col">
+        <app-auth-select
+          [title]="'Роль'"
+          [name]="'role'"
+          [placeholder]="'Выберите роль'"
+          [notes]="notes.role"
+          (contains)="onInput($event)"
+          [required]="true"
+          [options]="[
+            {
+              title: 'Сотрудник',
+              value: 'employee',
+            },
+            {
+              title: 'Аналитик',
+              value: 'analytics',
+            },
+            {
+              title: 'Модератор',
+              value: 'moderator',
+            },
+          ]"
+        ></app-auth-select>
+      </div>
+      <div class="col">
+        <app-auth-input
+          [title]="'Почта'"
+          [type]="'email'"
+          [placeholder]="'Введите почту'"
+          [notes]="notes.email"
+          [name]="'email'"
+          [required]="true"
+          [value]="form.get('email')?.value ?? ''"
+          (contains)="onInput($event)"
+        />
+      </div>
+      <div class="col">
+        <app-auth-select
+          [title]="'Регион'"
+          [placeholder]="'Выберите регион'"
+          [notes]="notes.region"
+          [name]="'region'"
+          (contains)="onInput($event)"
+          [required]="true"
+          [options]="[
+            {
+              title: 'Алматы',
+              value: 'Almaty',
+            },
+            {
+              title: 'Астана',
+              value: 'Astana',
+            },
+            {
+              title: 'Шымкент',
+              value: 'Shymkent',
+            },
+          ]"
+        ></app-auth-select>
+      </div>
+      <div class="col">
+        <app-auth-radio
+          [title]="'Пол'"
+          [name]="'sex'"
+          (contains)="onInput($event)"
+          [notes]="notes.sex"
+          [buttons]="[
+            { title: 'Мужской', value: 'male' },
+            { title: 'Женский', value: 'female' },
+          ]"
+        ></app-auth-radio>
+      </div>
+      <div class="col">
+        <app-auth-input
+          [title]="'Пароль'"
+          [type]="'password'"
+          [placeholder]="'Введите пароль'"
+          [notes]="notes.password"
+          [name]="'password'"
+          [required]="true"
+          [value]="form.get('password')?.value ?? ''"
+          (contains)="onInput($event)"
+        />
+      </div>
+      <div class="col">
+        <app-auth-input
+          [title]="'Повторите пароль'"
+          [placeholder]="'Повторите пароль'"
+          [type]="'password'"
+          [name]="'repeat'"
+          [notes]="notes.repeat"
+          [required]="true"
+          [value]="form.get('repeat')?.value ?? ''"
+          (contains)="onInput($event)"
+        />
+      </div>
     </div>
-    <div class="col">
-      <app-auth-input
-        title="Фамилия"
-        placeholder="Введите фамилию"
-        name="surname"
-      />
+    <div class="d-flex justify-content-center mt-4">
+      <app-auth-button [title]="'Войти'" [type]="'submit'" />
     </div>
-    <div class="col">
-      <app-auth-select
-        title="Роль"
-        name="role"
-        placeholder="Выберите роль"
-        [options]="[
-          {
-            title: 'Сотрудник',
-            value: 'employee',
-          },
-          {
-            title: 'Аналитик',
-            value: 'analytics',
-          },
-          {
-            title: 'Модератор',
-            value: 'moderator',
-          },
-        ]"
-      ></app-auth-select>
-    </div>
-    <div class="col">
-      <app-auth-input
-        title="Почта"
-        placeholder="Введите почту"
-        type="email"
-        name="email"
-      />
-    </div>
-    <div class="col">
-      <app-auth-select
-        title="Регион"
-        name="region"
-        placeholder="Выберите регион"
-        [options]="[
-          {
-            title: 'Алматы',
-            value: 'Almaty',
-          },
-          {
-            title: 'Астана',
-            value: 'Astana',
-          },
-          {
-            title: 'Шымкент',
-            value: 'Shymkent',
-          },
-        ]"
-      ></app-auth-select>
-    </div>
-    <div class="col">
-      <app-auth-radio
-        title="Пол"
-        name="sex"
-        [buttons]="[
-          { title: 'Мужской', value: 'male' },
-          { title: 'Женский', value: 'female' },
-        ]"
-      ></app-auth-radio>
-    </div>
-    <div class="col">
-      <app-auth-input
-        title="Пароль"
-        placeholder="Пароль"
-        type="password"
-        name="password"
-      />
-    </div>
-    <div class="col">
-      <app-auth-input
-        title="Повторите пароль"
-        placeholder="Повторите пароль"
-        type="password"
-        name="repeat-password"
-      />
-    </div>
-  </div>
-
-  <div class="mt-4">
-    <app-auth-button title="Войти" />
-  </div>
+  </form>
 
   <div class="d-flex flex-row gap-3 mt-4">
     <a [routerLink]="['/auth/sign-in']" class="text-black fs-6"

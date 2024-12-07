@@ -1,6 +1,12 @@
 <div class="d-flex flex-column gap-2">
-  <span class="ms-3">{{ title() }}</span>
-  <select class="border-0 rounded px-4 py-2" [name]="name()">
+  @if (title() !== '') {
+    <span class="ms-3">{{ title() }}</span>
+  }
+  <select
+    class="border-0 rounded px-4 py-2"
+    [name]="name()"
+    (input)="interaction($event)"
+  >
     <option value="" [defaultSelected]="true">{{ placeholder() }}</option>
     @for (option of options(); track $index) {
       <option [value]="option.value">
@@ -8,9 +14,11 @@
       </option>
     }
   </select>
-  <div>
-    @for (note of notes; track $index) {
-      <span class="text-danger fs-s ms-3">* {{ note }}</span>
-    }
-  </div>
+  @if (notes().length !== 0) {
+    <div class="d-flex flex-column gap-1">
+      @for (note of notes(); track $index) {
+        <span class="text-danger fs-s ms-3">* {{ note }}</span>
+      }
+    </div>
+  }
 </div>

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { Router, RouterModule } from '@angular/router';
 import {
@@ -20,7 +20,6 @@ import { Contains } from '../../../../shared/directives/auth-input.directive';
 })
 export class SignInComponent {
   private readonly router = inject(Router);
-  private readonly changeDetector = inject(ChangeDetectorRef);
 
   private readonly controls = {
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,7 +27,7 @@ export class SignInComponent {
       Validators.required,
       Validators.minLength(8),
       Validators.pattern(
-        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?\d)(?=.*?[#?!@$%^&*-]).{8,}$/
       ),
     ]),
   };
@@ -64,7 +63,6 @@ export class SignInComponent {
       }
 
       this.notes[contains.name] = notes;
-      this.changeDetector.detectChanges();
     }
   }
 

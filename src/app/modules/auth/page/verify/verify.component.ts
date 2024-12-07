@@ -8,13 +8,13 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-verification',
+  selector: 'app-verify',
   standalone: true,
   imports: [SharedModule, FormsModule],
-  templateUrl: './verification.component.html',
-  styleUrl: './verification.component.scss',
+  templateUrl: './verify.component.html',
+  styleUrl: './verify.component.scss',
 })
-export class VerificationComponent {
+export class VerifyComponent {
   form = new FormGroup({
     code: new FormControl('', [
       Validators.required,

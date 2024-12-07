@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { AuthInputDirective } from '../../directives/auth-input.directive';
 
 interface Option {
   title: string;
@@ -12,10 +13,7 @@ interface Option {
   templateUrl: './auth-select.component.html',
   styleUrl: './auth-select.component.scss',
 })
-export class AuthSelectComponent {
-  title = input<string>('');
-  name = input<string>('');
+export class AuthSelectComponent extends AuthInputDirective {
   placeholder = input<string>('');
   options = input<Option[]>([]);
-  notes: string[] = [];
 }
