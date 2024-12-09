@@ -22,11 +22,6 @@ export class SidePanelComponent {
 
   options: MenuOption[] = [
     {
-      icon: 'assets/icons/studio/identification.svg',
-      title: 'Реестр повесток и вызовов',
-      route: 'summons-subpoenas',
-    },
-    {
       icon: 'assets/icons/studio/document.svg',
       title: 'Создание заключения',
       route: 'conclusion-builder',
@@ -40,16 +35,6 @@ export class SidePanelComponent {
       icon: 'assets/icons/studio/profile.svg',
       title: 'Профиль',
       route: 'profile',
-    },
-    {
-      icon: 'assets/icons/studio/settings.svg',
-      title: 'Настройки',
-      route: 'settings',
-    },
-    {
-      icon: 'assets/icons/studio/help.svg',
-      title: 'Помощь',
-      route: 'help',
     },
   ];
 
