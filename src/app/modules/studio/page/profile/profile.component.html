@@ -11,24 +11,29 @@
       <app-studio-input
         title="Имя"
         placeholder="Введите имя"
+        [value]="form.get('name')?.value"
       ></app-studio-input>
       <app-studio-input
         title="Фамилия"
         placeholder="Введите фамилию"
+        [value]="form.get('surname')?.value"
       ></app-studio-input>
       <app-studio-input
         title="Почта"
         placeholder="Введите почту"
+        [value]="form.get('email')?.value"
       ></app-studio-input>
     </div>
     <div class="d-flex flex-column gap-3">
       <app-studio-select
         title="Регион"
         [options]="['Алматы', 'Астана', 'Шымкент']"
+        [value]="form.get('region')?.value"
       ></app-studio-select>
       <app-studio-input
         title="Роль"
         placeholder="Введите почту"
+        [value]="form.get('role')?.value"
       ></app-studio-input>
     </div>
   </div>
