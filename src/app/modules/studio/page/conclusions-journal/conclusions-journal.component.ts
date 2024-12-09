@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { DocsService } from '../../../../core/services/documents/docs.service';
 
 interface Document {
   id: string;
@@ -25,25 +26,36 @@ interface Document {
   styleUrl: './conclusions-journal.component.scss',
 })
 export class ConclusionsJournalComponent implements OnInit {
+  private readonly docs = inject(DocsService);
+
   ngOnInit(): void {
-    for (let i = 0; i < 20; i++) {
-      this.rows.push({
-        id: `${i + 1}`,
-        reg: 'Z-001',
-        createdAt: '2024-11-15',
-        uin: '040512501824',
-        name: 'Нұрбек Болат',
-        identification: '13291003',
-        article: 'Статья 93',
-        arrivedAt: '2024-11-15 - 22:30',
-        leftAt: '2024-11-15 - 6:45',
-        employer: 'SAP',
-        region: 'Алматы',
-        business: 'Да',
-        coordinator: 'Петров П. П.',
-        status: 'Согласовано',
-      });
-    }
+    this.docs.findAll().subscribe({
+      next: (response) => {
+        response.data.forEach((conclusion, index) => {
+          this.rows.push({
+            id: (index + 1).toString(),
+            reg: `${conclusion.id.slice(0, 7)}...`,
+            createdAt: conclusion.registrationDate,
+            uin: conclusion.defender[0].iin,
+            name: conclusion.defender[0].name,
+            identification: conclusion.called[0].pensionIin,
+            article: conclusion.incident[0].article,
+            arrivedAt: conclusion.called[0].arrivedAt
+              .split('T')[1]
+              .slice(0, -8),
+            leftAt: conclusion.called[0].leftAt.split('T')[1].slice(0, -8),
+            employer: conclusion.called[0].workplace,
+            region: conclusion.region,
+            business: conclusion.isBusinessRelated ? 'Да' : 'Нет',
+            coordinator: conclusion.approvals[0].name,
+            status: conclusion.status,
+          });
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 
   rows: Document[] = [];
