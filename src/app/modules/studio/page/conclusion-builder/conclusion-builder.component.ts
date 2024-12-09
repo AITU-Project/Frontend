@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
-import { DocumentTemplate } from '../../../../data/studio/document-builder/document-builder.constants';
+import { DocumentTemplate } from '../../../../data/document-builder/document-builder.constants';
 
 @Component({
   selector: 'app-conclusion-builder',
