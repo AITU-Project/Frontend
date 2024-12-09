@@ -15,7 +15,6 @@ interface Document {
   business: string;
   coordinator: string;
   status: string;
-  actions: string[];
 }
 
 @Component({
@@ -43,7 +42,6 @@ export class ConclusionsJournalComponent implements OnInit {
         business: 'Да',
         coordinator: 'Петров П. П.',
         status: 'Согласовано',
-        actions: ['Открыть'],
       });
     }
   }
