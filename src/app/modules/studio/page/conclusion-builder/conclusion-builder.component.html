@@ -3,55 +3,66 @@
     <h2>Создание заключения</h2>
   </div>
   <div class="d-flex flex-column gap-4">
-    @for (section of template.sections; track $index) {
-      <app-studio-section title="{{ section.title }}">
-        @for (input of section.inputs; track $index) {
-          @switch (input.type) {
-            @case ('text') {
-              <app-studio-input
-                title="{{ input.name }}"
-                value="{{ input.value }}"
-                placeholder="{{
-                  input.placeholder
-                    ? input.placeholder
-                    : ['Введите', input.name.toLocaleLowerCase()].join(' ')
-                }}"
-              ></app-studio-input>
-            }
-            @case ('date') {
-              <app-studio-input
-                title="{{ input.name }}"
-                value="{{ input.value }}"
-                type="date"
-              ></app-studio-input>
-            }
-            @case ('text-area') {
-              <app-studio-textarea
-                [title]="input.name"
-                value="{{ input.value }}"
-                [placeholder]="
-                  input.placeholder
-                    ? input.placeholder
-                    : ['Введите', input.name.toLocaleLowerCase()].join(' ')
-                "
-              ></app-studio-textarea>
-            }
-            @case ('select') {
-              <app-studio-select
-                [title]="input.name"
-                [options]="input.options"
-              ></app-studio-select>
-            }
-            @case ('datetime') {
-              <app-studio-input
-                title="{{ input.name }}"
-                value="{{ input.value }}"
-                type="datetime-local"
-              ></app-studio-input>
+    <form
+      [formGroup]="form"
+      class="d-flex flex-column gap-4"
+      (submit)="onSubmit(form)"
+    >
+      @for (section of template.sections; track $index) {
+        <app-studio-section title="{{ section.title }}">
+          @for (input of section.inputs; track $index) {
+            @switch (input.type) {
+              @case ('text') {
+                <app-studio-input
+                  title="{{ input.title }}"
+                  value="{{ input.value }}"
+                  placeholder="{{
+                    input.placeholder
+                      ? input.placeholder
+                      : ['Введите', input.title.toLocaleLowerCase()].join(' ')
+                  }}"
+                  name="{{ input.name }}"
+                  (contains)="this.onInput($event)"
+                ></app-studio-input>
+              }
+              @case ('date') {
+                <app-studio-input
+                  title="{{ input.title }}"
+                  value="{{ input.value }}"
+                  type="date"
+                ></app-studio-input>
+              }
+              @case ('text-area') {
+                <app-studio-textarea
+                  [title]="input.title"
+                  value="{{ input.value }}"
+                  [placeholder]="
+                    input.placeholder
+                      ? input.placeholder
+                      : ['Введите', input.title.toLocaleLowerCase()].join(' ')
+                  "
+                ></app-studio-textarea>
+              }
+              @case ('select') {
+                <app-studio-select
+                  [title]="input.title"
+                  [options]="input.options"
+                ></app-studio-select>
+              }
+              @case ('datetime') {
+                <app-studio-input
+                  title="{{ input.title }}"
+                  value="{{ input.value }}"
+                  type="datetime-local"
+                ></app-studio-input>
+              }
             }
           }
-        }
-      </app-studio-section>
-    }
+        </app-studio-section>
+      }
+      <div class="d-flex justify-content-center">
+        <app-auth-button title="Создать" type="submit" />
+      </div>
+    </form>
   </div>
 </div>
