@@ -7,33 +7,38 @@ enum InputType {
 }
 
 interface TextAreaInput {
-  name: string;
+  title: string;
+  name?: string;
   type: InputType.TextArea;
   value?: string;
   placeholder?: string;
 }
 
 interface TextInput {
-  name: string;
+  title: string;
+  name?: string;
   type: InputType.Text;
   value?: string;
   placeholder?: string;
 }
 
 interface DateInput {
-  name: string;
+  title: string;
+  name?: string;
   type: InputType.Date;
   value?: string;
 }
 
 interface DateTimeInput {
-  name: string;
+  title: string;
+  name?: string;
   type: InputType.Datetime;
   value?: string;
 }
 
 interface SelectInput {
-  name: string;
+  title: string;
+  name?: string;
   type: InputType.Select;
   options: string[];
   value?: string;
@@ -61,27 +66,28 @@ export const DocumentTemplate: Document = {
       title: 'Основная информация',
       inputs: [
         {
-          name: 'Регистрационный номер',
+          title: 'Регистрационный номер',
           type: InputType.Text,
+          name: 'regNumber',
         },
         {
-          name: 'Дата создания документа',
+          title: 'Дата создания документа',
           type: InputType.Date,
         },
         {
-          name: 'Номер УД (15 цифр)',
+          title: 'Номер УД (15 цифр)',
           type: InputType.Text,
         },
         {
-          name: 'Статья УК',
+          title: 'Статья УК',
           type: InputType.Text,
         },
         {
-          name: 'Решение по делу',
+          title: 'Решение по делу',
           type: InputType.TextArea,
         },
         {
-          name: 'Краткая фабула',
+          title: 'Краткая фабула',
           type: InputType.TextArea,
         },
       ],
@@ -90,29 +96,29 @@ export const DocumentTemplate: Document = {
       title: 'Информация о вызываемом',
       inputs: [
         {
-          name: 'ИИН вызываемого (12 цифр)',
+          title: 'ИИН вызываемого (12 цифр)',
           type: InputType.Text,
         },
         {
-          name: 'ФИО вызываемого',
+          title: 'ФИО вызываемого',
           type: InputType.Text,
         },
         {
-          name: 'Место работы',
+          title: 'Место работы',
           type: InputType.Text,
         },
         {
-          name: 'Должность вызываемого',
+          title: 'Должность вызываемого',
           type: InputType.Select,
           options: ['Инспектор', 'Следователь', 'Аналитик'],
         },
         {
-          name: 'Регион',
+          title: 'Регион',
           type: InputType.Select,
           options: ['Астана', 'Алматы', 'Шымкент'],
         },
         {
-          name: 'Планируемые следственные действия',
+          title: 'Планируемые следственные действия',
           type: InputType.TextArea,
         },
       ],
@@ -121,20 +127,20 @@ export const DocumentTemplate: Document = {
       title: 'Информация о следственном действии',
       inputs: [
         {
-          name: 'Дата и время проведения',
+          title: 'Дата и время проведения',
           type: InputType.Text,
         },
         {
-          name: 'Место проведения',
+          title: 'Место проведения',
           type: InputType.Select,
           options: ['Место проведения'],
         },
         {
-          name: 'Следователь',
+          title: 'Следователь',
           type: InputType.Text,
         },
         {
-          name: 'Статус по делу вызываемого',
+          title: 'Статус по делу вызываемого',
           type: InputType.Select,
           options: [
             'Отказано',
@@ -146,11 +152,11 @@ export const DocumentTemplate: Document = {
           ],
         },
         {
-          name: 'Отношение вызывающего к событию и субьекту',
+          title: 'Отношение вызывающего к событию и субьекту',
           type: InputType.Text,
         },
         {
-          name: 'Виды планируемого следствия',
+          title: 'Виды планируемого следствия',
           type: InputType.Select,
           options: [
             'Повторная экспертиза',
@@ -160,24 +166,24 @@ export const DocumentTemplate: Document = {
           ],
         },
         {
-          name: 'Относится-ли к бизнесу',
+          title: 'Относится-ли к бизнесу',
           type: InputType.Select,
           options: ['Да', 'Нет'],
         },
         {
-          name: 'ИИН защитника (ручной ввод, ФЛК 12 цифр)',
+          title: 'ИИН защитника (ручной ввод, ФЛК 12 цифр)',
           type: InputType.Text,
         },
         {
-          name: 'ФИО защитника',
+          title: 'ФИО защитника',
           type: InputType.Text,
         },
         {
-          name: 'Обоснование и необходимость участия предпринимателя',
+          title: 'Обоснование и необходимость участия предпринимателя',
           type: InputType.Text,
         },
         {
-          name: 'Результат от планируемого следственного действия',
+          title: 'Результат от планируемого следственного действия',
           type: InputType.Text,
         },
       ],
@@ -186,27 +192,27 @@ export const DocumentTemplate: Document = {
       title: 'История вызовов',
       inputs: [
         {
-          name: 'Предыдущий вызов по УД',
+          title: 'Предыдущий вызов по УД',
           type: InputType.Text,
         },
         {
-          name: 'Кто вызывал',
+          title: 'Кто вызывал',
           type: InputType.Text,
         },
         {
-          name: 'Статус предыдущего вызова',
+          title: 'Статус предыдущего вызова',
           type: InputType.Text,
         },
         {
-          name: 'Время прихода',
+          title: 'Время прихода',
           type: InputType.Datetime,
         },
         {
-          name: 'Время ухода',
+          title: 'Время ухода',
           type: InputType.Datetime,
         },
         {
-          name: 'Причины и цели повторного вызова',
+          title: 'Причины и цели повторного вызова',
           type: InputType.Text,
         },
       ],
@@ -215,24 +221,24 @@ export const DocumentTemplate: Document = {
       title: 'Путь согласования заключения',
       inputs: [
         {
-          name: 'Должность',
+          title: 'Должность',
           type: InputType.Text,
         },
         {
-          name: 'ФИО',
+          title: 'ФИО',
           type: InputType.Text,
         },
         {
-          name: 'Статус согласования',
+          title: 'Статус согласования',
           type: InputType.Select,
           options: ['На доработку', 'Утверждено', 'Отказ'],
         },
         {
-          name: 'Дата и время согласования',
+          title: 'Дата и время согласования',
           type: InputType.Datetime,
         },
         {
-          name: 'Причины отправки на доработку/отказ/без рассмотрения',
+          title: 'Причины отправки на доработку/отказ/без рассмотрения',
           type: InputType.TextArea,
         },
       ],
