@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import {
   AbstractControl,
   FormControl,
@@ -21,11 +21,10 @@ import { AuthService } from '../../../../core/services/auth/auth.service';
   styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
-  private readonly router = inject(Router);
   private readonly auth = inject(AuthService);
 
   private readonly controls = {
-    firstname: new FormControl('', [Validators.required]),
+    name: new FormControl('', [Validators.required]),
     surname: new FormControl('', [Validators.required]),
 
     region: new FormControl('', [Validators.required]),
@@ -101,13 +100,11 @@ export class SignUpComponent {
       return;
     }
 
-    const dto = {
-      email: this.form.get('email')?.value as string,
-      password: this.form.get('password')?.value as string,
-    };
+    const dto = { ...form.value, repeat: undefined };
 
-    this.auth.login(dto.email, dto.password).subscribe({
+    this.auth.register(dto).subscribe({
       next: () => {
+        this.auth.inVerification = dto.email;
         window.location.reload();
       },
       error: (error) => {

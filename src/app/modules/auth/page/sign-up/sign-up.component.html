@@ -14,11 +14,11 @@
         <app-auth-input
           [title]="'Имя'"
           [placeholder]="'Введите имя'"
-          [name]="'firstname'"
+          [name]="'name'"
           (contains)="onInput($event)"
-          [notes]="notes.firstname"
+          [notes]="notes.name"
           [required]="true"
-          [value]="form.get('firstname')?.value ?? ''"
+          [value]="form.get('name')?.value ?? ''"
         />
       </div>
       <div class="col">
@@ -27,7 +27,7 @@
           [placeholder]="'Введите фамилию'"
           [name]="'surname'"
           (contains)="onInput($event)"
-          [notes]="notes.firstname"
+          [notes]="notes.name"
           [required]="true"
           [value]="form.get('surname')?.value ?? ''"
         />

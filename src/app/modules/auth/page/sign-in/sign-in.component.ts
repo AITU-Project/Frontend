@@ -13,10 +13,6 @@ import { Contains } from '../../../../shared/directives/auth-input.directive';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { APIService } from '../../../../core/services/api/api.service';
 
-export interface LoginResponse {
-  access_token: string;
-}
-
 @Component({
   selector: 'app-sign-in',
   standalone: true,
@@ -85,7 +81,7 @@ export class SignInComponent {
 
     this.auth.login(dto.email, dto.password).subscribe({
       next: (response) => {
-        this.auth.save((response as LoginResponse).access_token);
+        this.auth.save(response.access_token);
         window.location.reload();
       },
       error: (error) => {

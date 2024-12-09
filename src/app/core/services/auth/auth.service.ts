@@ -1,37 +1,64 @@
 import { inject, Injectable } from '@angular/core';
 import { APIService } from '../api/api.service';
-
-export interface SignUpDto {
-  email: string;
-  firstname: string;
-  surname: string;
-  password: string;
-  role: string;
-  region: string;
-  sex: 'male' | 'female';
-}
+import { SignInResponse, SignUpResponse, SignUpDto, User } from './auth.models';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private readonly key = 'token';
+  private readonly email = 'email';
+
+  set inVerification(value: string | null) {
+    if (value === null) {
+      localStorage.removeItem(this.email);
+    } else {
+      localStorage.setItem(this.email, value);
+    }
+  }
+
+  get inVerification(): boolean {
+    return !!localStorage.getItem(this.email);
+  }
+
   private readonly api = inject(APIService);
 
-  get authenticated(): boolean {
-    return !!localStorage.getItem('token');
+  get hasKey(): boolean {
+    return !!localStorage.getItem(this.key);
   }
 
   login(email: string, password: string) {
-    return this.api.post('/auth/sign-in', { email, password });
+    return this.api.post<SignInResponse>('/auth/sign-in', { email, password });
   }
 
   register(dto: SignUpDto) {
-    return this.api.post('/auth/sign-up/', { ...dto, name: dto.firstname });
+    return this.api.post<SignUpResponse>('/auth/sign-up/', dto);
   }
 
   save(token: string) {
-    localStorage.setItem('token', token);
+    localStorage.setItem(this.key, token);
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem(this.key);
+  }
+
+  profile() {
+    if (!this.hasKey) {
+      return;
+    }
+
+    return this.api.get('/auth/profile/', {
+      authorization: localStorage.getItem(this.key)!,
+    });
+  }
+
+  verify(data: { code: string }) {
+    if (!this.inVerification) {
+      return;
+    }
+
+    return this.api.post<User>('/auth/verify/', {
+      email: localStorage.getItem(this.email),
+      code: data.code,
+    });
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import {
   FormControl,
@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Contains } from '../../../../shared/directives/auth-input.directive';
+import { AuthService } from '../../../../core/services/auth/auth.service';
 
 @Component({
   selector: 'app-verify',
@@ -17,6 +18,8 @@ import { Contains } from '../../../../shared/directives/auth-input.directive';
   styleUrl: './verify.component.scss',
 })
 export class VerifyComponent {
+  private readonly auth = inject(AuthService);
+
   private readonly controls = {
     code: new FormControl('', [
       Validators.required,
@@ -36,7 +39,24 @@ export class VerifyComponent {
     }
   }
 
-  handleClick() {
-    console.log(this.form.value);
+  onSubmit(form: FormGroup) {
+    if (!form.valid) {
+      return;
+    }
+
+    this.auth.verify(form.value)?.subscribe({
+      next: (response) => {
+        this.auth.inVerification = null;
+        this.auth.login(response.email, response.password).subscribe({
+          next: (response) => {
+            this.auth.save(response.access_token);
+            window.location.reload();
+          },
+        });
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }
