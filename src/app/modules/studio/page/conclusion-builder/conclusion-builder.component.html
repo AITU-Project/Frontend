@@ -28,7 +28,7 @@
               @case ('date') {
                 <app-studio-input
                   title="{{ input.title }}"
-                  value="{{ input.value }}"
+                  value="{{ input.value ?? defaultDate }}"
                   type="date"
                 ></app-studio-input>
               }
@@ -52,7 +52,7 @@
               @case ('datetime') {
                 <app-studio-input
                   title="{{ input.title }}"
-                  value="{{ input.value }}"
+                  value="{{ input.value ?? defaultDatetime }}"
                   type="datetime-local"
                 ></app-studio-input>
               }

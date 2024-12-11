@@ -24,6 +24,9 @@ export class ConclusionBuilderComponent implements OnInit {
 
   template = DocumentTemplate;
 
+  defaultDate = new Date().toISOString().split('T')[0];
+  defaultDatetime = new Date().toISOString().slice(0, 16);
+
   private readonly controls = DocumentTemplate.sections.reduce(
     (common, section) => {
       section.inputs.forEach((input) => {
