@@ -15,7 +15,9 @@
               @case ('text') {
                 <app-studio-input
                   title="{{ input.title }}"
-                  value="{{ input.value }}"
+                  value="{{
+                    input.name ? (this.form.get(input.name)?.value ?? '') : ''
+                  }}"
                   placeholder="{{
                     input.placeholder
                       ? input.placeholder
@@ -28,14 +30,21 @@
               @case ('date') {
                 <app-studio-input
                   title="{{ input.title }}"
-                  value="{{ input.value ?? defaultDate }}"
+                  value="{{
+                    input.name ? (this.form.get(input.name)?.value ?? '') : ''
+                  }}"
                   type="date"
+                  name="{{ input.name }}"
+                  (contains)="this.onInput($event)"
                 ></app-studio-input>
               }
               @case ('text-area') {
                 <app-studio-textarea
                   [title]="input.title"
-                  value="{{ input.value }}"
+                  value="{{
+                    input.name ? (this.form.get(input.name)?.value ?? '') : ''
+                  }}"
+                  (contains)="this.onInput($event)"
                   [placeholder]="
                     input.placeholder
                       ? input.placeholder
@@ -47,13 +56,17 @@
                 <app-studio-select
                   [title]="input.title"
                   [options]="input.options"
+                  (contains)="this.onInput($event)"
                 ></app-studio-select>
               }
               @case ('datetime') {
                 <app-studio-input
                   title="{{ input.title }}"
-                  value="{{ input.value ?? defaultDatetime }}"
                   type="datetime-local"
+                  (contains)="this.onInput($event)"
+                  value="{{
+                    input.name ? (this.form.get(input.name)?.value ?? '') : ''
+                  }}"
                 ></app-studio-input>
               }
             }

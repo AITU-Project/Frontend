@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { DocumentTemplate } from '../../../../data/document-builder/document-builder.constants';
 import {
@@ -17,11 +17,7 @@ import { Contains } from '../../../../shared/directives/auth-input.directive';
   templateUrl: './conclusion-builder.component.html',
   styleUrl: './conclusion-builder.component.scss',
 })
-export class ConclusionBuilderComponent implements OnInit {
-  ngOnInit(): void {
-    console.log(this.controls);
-  }
-
+export class ConclusionBuilderComponent {
   template = DocumentTemplate;
 
   defaultDate = new Date().toISOString().split('T')[0];
@@ -31,7 +27,15 @@ export class ConclusionBuilderComponent implements OnInit {
     (common, section) => {
       section.inputs.forEach((input) => {
         if (input.name) {
-          common[input.name] = new FormControl('', [Validators.required]);
+          const value = input.value
+            ? input.value
+            : input.type === 'date'
+              ? this.defaultDate
+              : input.type === 'datetime'
+                ? this.defaultDatetime
+                : '';
+
+          common[input.name] = new FormControl(value, [Validators.required]);
         }
       });
 
