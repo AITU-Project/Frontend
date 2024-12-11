@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { DocumentTemplate } from '../../../../data/document-builder/document-builder.constants';
 import {
@@ -9,6 +9,8 @@ import {
   Validators,
 } from '@angular/forms';
 import { Contains } from '../../../../shared/directives/auth-input.directive';
+import { AuthService } from '../../../../core/services/auth/auth.service';
+import { APIService } from '../../../../core/services/api/api.service';
 
 @Component({
   selector: 'app-conclusion-builder',
@@ -20,20 +22,42 @@ import { Contains } from '../../../../shared/directives/auth-input.directive';
 export class ConclusionBuilderComponent {
   template = DocumentTemplate;
 
+  createdBy: string = '';
+
   defaultDate = new Date().toISOString().split('T')[0];
   defaultDatetime = new Date().toISOString().slice(0, 16);
+
+  private readonly auth = inject(AuthService);
+  private readonly api = inject(APIService);
+
+  profile: any = {};
+
+  constructor() {
+    this.auth.profile()?.subscribe({
+      next: (response) => {
+        this.createdBy = response.profile.id;
+        this.profile = response.profile;
+      },
+    });
+  }
 
   private readonly controls = DocumentTemplate.sections.reduce(
     (common, section) => {
       section.inputs.forEach((input) => {
         if (input.name) {
-          const value = input.value
-            ? input.value
-            : input.type === 'date'
-              ? this.defaultDate
-              : input.type === 'datetime'
-                ? this.defaultDatetime
-                : '';
+          let value = '';
+
+          if (input.name === 'region') {
+            value = this.profile.region;
+          } else {
+            value = input.value
+              ? input.value
+              : input.type === 'date'
+                ? this.defaultDate
+                : input.type === 'datetime'
+                  ? this.defaultDatetime
+                  : '';
+          }
 
           common[input.name] = new FormControl(value, [Validators.required]);
         }
@@ -56,5 +80,30 @@ export class ConclusionBuilderComponent {
 
   onSubmit(form: FormGroup) {
     console.log(form.value);
+    this.api
+      .post('/conclusions/', {
+        createdBy: this.createdBy,
+        registrationDate: form.get('registrationDate')?.value,
+        region: this.profile.region,
+        position: form.get('position')?.value,
+        plannedActions: form.get('plannedActions')?.value,
+        eventDate: form.get('eventDate')?.value,
+        investigator: form.get('investigator')?.value,
+        eventPlace: form.get('eventPlace')?.value,
+        status: 'В работе',
+        eventRelation: form.get('eventRelation')?.value,
+        investigationType: 'Расследование',
+        justification: form.get('justification')?.value,
+        actionResult: form.get('actionResult')?.value,
+        isBusinessRelated: form.get('isBusinessRelated')?.value === 'Да',
+      })
+      .subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (errors) => {
+          console.log(errors);
+        },
+      });
   }
 }

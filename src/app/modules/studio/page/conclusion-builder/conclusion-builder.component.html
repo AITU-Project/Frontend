@@ -57,6 +57,9 @@
                   [title]="input.title"
                   [options]="input.options"
                   (contains)="this.onInput($event)"
+                  value="{{
+                    input.name ? (this.form.get(input.name)?.value ?? '') : ''
+                  }}"
                 ></app-studio-select>
               }
               @case ('datetime') {

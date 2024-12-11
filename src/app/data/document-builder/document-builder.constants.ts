@@ -112,10 +112,12 @@ export const DocumentTemplate: Document = {
           title: 'Регион',
           type: InputType.Select,
           options: ['Астана', 'Алматы', 'Шымкент'],
+          name: 'region',
         },
         {
           title: 'Планируемые следственные действия',
           type: InputType.TextArea,
+          name: 'plannedActions',
         },
       ],
     },
@@ -124,16 +126,20 @@ export const DocumentTemplate: Document = {
       inputs: [
         {
           title: 'Дата и время проведения',
-          type: InputType.Text,
+          type: InputType.Datetime,
+          name: 'eventDate',
         },
         {
           title: 'Место проведения',
           type: InputType.Select,
           options: ['Место проведения'],
+          value: 'Городской суд',
+          name: 'eventPlace',
         },
         {
           title: 'Следователь',
           type: InputType.Text,
+          name: 'investigator',
         },
         {
           title: 'Статус по делу вызываемого',
@@ -150,6 +156,7 @@ export const DocumentTemplate: Document = {
         {
           title: 'Отношение вызывающего к событию и субьекту',
           type: InputType.Text,
+          name: 'eventRelation',
         },
         {
           title: 'Виды планируемого следствия',
@@ -165,6 +172,7 @@ export const DocumentTemplate: Document = {
           title: 'Относится-ли к бизнесу',
           type: InputType.Select,
           options: ['Да', 'Нет'],
+          name: 'isBusinessRelated',
         },
         {
           title: 'ИИН защитника (ручной ввод, ФЛК 12 цифр)',
@@ -177,10 +185,12 @@ export const DocumentTemplate: Document = {
         {
           title: 'Обоснование и необходимость участия предпринимателя',
           type: InputType.Text,
+          name: 'justification',
         },
         {
           title: 'Результат от планируемого следственного действия',
           type: InputType.Text,
+          name: 'actionResult',
         },
       ],
     },
@@ -225,6 +235,7 @@ export const DocumentTemplate: Document = {
         {
           title: 'Должность',
           type: InputType.Text,
+          name: 'position',
         },
         {
           title: 'ФИО',
