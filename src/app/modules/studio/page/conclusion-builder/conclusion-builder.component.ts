@@ -11,6 +11,7 @@ import {
 import { Contains } from '../../../../shared/directives/auth-input.directive';
 import { AuthService } from '../../../../core/services/auth/auth.service';
 import { APIService } from '../../../../core/services/api/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-conclusion-builder',
@@ -29,13 +30,14 @@ export class ConclusionBuilderComponent {
 
   private readonly auth = inject(AuthService);
   private readonly api = inject(APIService);
+  private readonly router = inject(Router);
 
   profile: any = {};
 
   constructor() {
     this.auth.profile()?.subscribe({
       next: (response) => {
-        this.createdBy = response.profile.id;
+        this.createdBy = response.employee.id;
         this.profile = response.profile;
       },
     });
@@ -98,8 +100,9 @@ export class ConclusionBuilderComponent {
         isBusinessRelated: form.get('isBusinessRelated')?.value === 'Да',
       })
       .subscribe({
-        next: (response) => {
+        next: (response: any) => {
           console.log(response);
+          this.router.navigate(['studio', 'conclusions-journal']);
         },
         error: (errors) => {
           console.log(errors);

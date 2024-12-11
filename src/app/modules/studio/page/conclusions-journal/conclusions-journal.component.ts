@@ -38,18 +38,18 @@ export class ConclusionsJournalComponent implements OnInit {
             id: (index + 1).toString(),
             reg: `${conclusion.id.slice(0, 7)}...`,
             createdAt: conclusion.registrationDate,
-            uin: conclusion.defender[0].iin,
-            name: conclusion.defender[0].name,
-            identification: conclusion.called[0].pensionIin,
-            article: conclusion.incident[0].article,
-            arrivedAt: conclusion.called[0].arrivedAt
-              .split('T')[1]
-              .slice(0, -8),
-            leftAt: conclusion.called[0].leftAt.split('T')[1].slice(0, -8),
-            employer: conclusion.called[0].workplace,
+            uin: conclusion.defender[0]?.iin ?? '040512501824',
+            name: conclusion.defender[0]?.name ?? 'Иван Иванов',
+            identification: conclusion.called[0]?.pensionIin ?? '12341234',
+            article: conclusion.incident[0]?.article ?? 'Статья 137',
+            arrivedAt:
+              conclusion.called[0]?.arrivedAt.split('T')[1].slice(0, -8) ?? '',
+            leftAt:
+              conclusion.called[0]?.leftAt.split('T')[1].slice(0, -8) ?? '',
+            employer: conclusion.called[0]?.workplace ?? 'Место',
             region: conclusion.region,
             business: conclusion.isBusinessRelated ? 'Да' : 'Нет',
-            coordinator: conclusion.approvals[0].name,
+            coordinator: conclusion.approvals[0]?.name ?? 'Координатор',
             status: conclusion.status,
           });
         });
