@@ -66,11 +66,6 @@ export const DocumentTemplate: Document = {
       title: 'Основная информация',
       inputs: [
         {
-          title: 'Регистрационный номер',
-          type: InputType.Text,
-          name: 'regNumber',
-        },
-        {
           title: 'Дата создания документа',
           type: InputType.Date,
         },
