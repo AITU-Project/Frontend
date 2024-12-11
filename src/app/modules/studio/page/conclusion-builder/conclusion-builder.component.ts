@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { DocumentTemplate } from '../../../../data/document-builder/document-builder.constants';
