@@ -68,6 +68,7 @@ export const DocumentTemplate: Document = {
         {
           title: 'Дата создания документа',
           type: InputType.Date,
+          name: 'registrationDate',
         },
         {
           title: 'Номер УД (15 цифр)',
@@ -189,26 +190,32 @@ export const DocumentTemplate: Document = {
         {
           title: 'Предыдущий вызов по УД',
           type: InputType.Text,
+          name: 'lastCall',
         },
         {
           title: 'Кто вызывал',
           type: InputType.Text,
+          name: 'caller',
         },
         {
           title: 'Статус предыдущего вызова',
           type: InputType.Text,
+          name: 'status',
         },
         {
           title: 'Время прихода',
           type: InputType.Datetime,
+          name: 'arrivedAt',
         },
         {
           title: 'Время ухода',
           type: InputType.Datetime,
+          name: 'leftAt',
         },
         {
           title: 'Причины и цели повторного вызова',
           type: InputType.Text,
+          name: 'reason',
         },
       ],
     },
