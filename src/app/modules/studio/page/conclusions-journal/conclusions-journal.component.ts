@@ -29,7 +29,7 @@ export class ConclusionsJournalComponent implements OnInit {
   private readonly docs = inject(DocsService);
 
   ngOnInit(): void {
-    this.docs.findAll().subscribe({
+    this.docs.findAll()?.subscribe({
       next: (response) => {
         response.data.forEach((conclusion, index) => {
           this.rows.push({

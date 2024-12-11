@@ -25,6 +25,10 @@ export class AuthService {
     return !!localStorage.getItem(this.key);
   }
 
+  getToken(): string | null {
+    return localStorage.getItem(this.key);
+  }
+
   login(email: string, password: string) {
     return this.api.post<SignInResponse>('/auth/sign-in', { email, password });
   }
