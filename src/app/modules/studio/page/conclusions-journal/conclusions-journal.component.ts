@@ -31,6 +31,8 @@ export class ConclusionsJournalComponent implements OnInit {
   ngOnInit(): void {
     this.docs.findAll()?.subscribe({
       next: (response) => {
+        if (!response) return;
+
         response.data.forEach((conclusion, index) => {
           this.rows.push({
             id: (index + 1).toString(),

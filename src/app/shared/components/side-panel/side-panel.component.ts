@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/auth/auth.service';
 
@@ -16,7 +16,17 @@ interface MenuOption {
   templateUrl: './side-panel.component.html',
   styleUrl: './side-panel.component.scss',
 })
-export class SidePanelComponent {
+export class SidePanelComponent implements OnInit {
+  ngOnInit(): void {
+    this.auth.profile()?.subscribe({
+      next: (response) => {
+        if (response.profile.role !== 'employee') {
+          this.options = this.options.slice(1);
+        }
+      },
+    });
+  }
+
   router = inject(Router);
   auth = inject(AuthService);
 

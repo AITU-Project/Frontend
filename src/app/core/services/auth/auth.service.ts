@@ -50,7 +50,7 @@ export class AuthService {
       return;
     }
 
-    return this.api.get('/auth/profile/', {
+    return this.api.get<{ profile: { role: string } }>('/auth/profile/', {
       authorization: localStorage.getItem(this.key)!,
     });
   }
