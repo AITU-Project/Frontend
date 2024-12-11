@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, inject } from '@angular/core';
 import { SharedModule } from '../../../../shared/shared.module';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -12,11 +13,14 @@ import { AuthService } from '../../../../core/services/auth/auth.service';
 })
 export class ProfileComponent {
   private readonly auth = inject(AuthService);
+  role: string = '';
 
   constructor() {
     this.auth.profile()?.subscribe({
       next: (response: any) => {
         const profile = response.profile;
+        this.role = profile.role;
+
         this.form = new FormGroup({
           name: new FormControl(profile.name),
           surname: new FormControl(profile.surname),

@@ -35,6 +35,18 @@
         placeholder="Введите почту"
         [value]="form.get('role')?.value"
       ></app-studio-input>
+      @if (role === 'employee') {
+        <app-studio-input
+          title="ИИН"
+          placeholder="Введите ИИН"
+          [value]="form.get('iin')?.value"
+        ></app-studio-input>
+        <app-studio-input
+          title="Рабочее Место"
+          placeholder="Введите рабочее место"
+          [value]="form.get('workplace')?.value"
+        ></app-studio-input>
+      }
     </div>
   </div>
 </div>
